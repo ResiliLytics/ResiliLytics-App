@@ -6,13 +6,12 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 
 # ---- HEADER ----
 st.markdown("""
-    <div style='text-align: center; padding: 2rem 0 1.5rem 0;'>
-        <img src="https://img.icons8.com/fluency/48/insight.png" alt="SupplySight Logo" style='vertical-align: middle; margin-right: 10px;'/>
-        <h1 style='color: #f1f1f1; display: inline;'>SupplySight Dashboard</h1>
-        <h3 style='color: #d0d0d0; font-weight:400; margin-top: 0.5rem;'>AI-powered SME Resilience & Risk</h3>
+    <div style='text-align: center; padding: 1.5rem 0 1rem 0;'>
+        <img src='https://raw.githubusercontent.com/yourusername/your-repo/main/logo.png' alt='SupplySight Logo' width='60'/>
+        <h1 style='color: #ffffff; margin-bottom: .25rem;'>SupplySight Dashboard</h1>
+        <h3 style='color: #bbbbbb; font-weight:400;'>AI-powered SME Resilience & Risk</h3>
     </div>
 """, unsafe_allow_html=True)
-
 # ---- TOP ROW ----
 col1, col2, col3 = st.columns([1.1, 1, 1])
 
