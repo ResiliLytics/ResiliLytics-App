@@ -1,118 +1,102 @@
 import streamlit as st
-import plotly.graph_objects as go
 import pandas as pd
+import plotly.graph_objects as go
+import base64
+from io import BytesIO
 
-st.set_page_config(layout="wide", page_title="SupplySight")
+st.set_page_config(page_title="SupplySight", layout="wide")
 
+# ---- HEADER ----
 st.markdown("""
-    <style>
-    .main-header {
-        background: linear-gradient(to right, #f97316, #facc15);
-        padding: 1rem;
-        border-radius: 10px;
-        color: white;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    .card {
-        background-color: #f9fafb;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
-        margin-bottom: 1rem;
-    }
-    .metric-block {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 1rem;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<div class='main-header'>
-    <h1>SupplySight 🚀</h1>
-    <h3>AI-Driven Resilience & Action Engine for SMEs</h3>
-</div>
-""", unsafe_allow_html=True)
-
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col1:
-    st.markdown("### 📊 Resilience Score")
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=68,
-        gauge={'axis': {'range': [0, 100]},
-               'bar': {'color': "green"},
-               'steps': [
-                   {'range': [0, 50], 'color': "#f87171"},
-                   {'range': [50, 75], 'color': "#facc15"},
-                   {'range': [75, 100], 'color': "#4ade80"}]
-              },
-        domain={'x': [0, 1], 'y': [0, 1]}
-    ))
-    fig.update_layout(height=250, margin=dict(l=20, r=20, t=40, b=0))
-    st.plotly_chart(fig, use_container_width=True)
-
-with col2:
-    st.markdown("### 📊 Key Metrics")
-    st.markdown("""
-    <div class='card'>
-        <p><b>Supplier Concentration:</b> 57%</p>
-        <p><b>Cost Volatility:</b> Moderate</p>
-        <p><b>Geographic Exposure:</b> 15 Countries</p>
-        <p><b>Supply Risk:</b> High</p>
+    <div style='text-align: center; padding: 1rem; border-radius: 10px; background-color: #F5F7FA;'>
+        <h1 style='color: #003366;'>SupplySight Dashboard</h1>
+        <h4 style='color: #444;'>AI-powered SME resilience scoring + mitigation insights</h4>
     </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("### 🔧 Recommendations")
-    st.markdown("""
-    <div class='card'>
-        <ul>
-            <li>🌟 Evaluate alternate suppliers in East Asia</li>
-            <li>📊 Increase buffer inventory for key items</li>
-            <li>📂 <a href='#'>Download Project Brief</a></li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-col4, col5 = st.columns([1, 1])
-
-with col4:
-    st.markdown("### 📈 Risk Insights")
-    bar_fig = go.Figure([go.Bar(x=['Jan','Feb','Mar','Apr','May','Jun'], y=[2,4,6,8,10,14], marker_color="#60a5fa")])
-    bar_fig.update_layout(height=250, margin=dict(l=20, r=20, t=30, b=0))
-    st.plotly_chart(bar_fig, use_container_width=True)
-
-with col5:
-    st.markdown("### 📊 Supplier Diversification")
-    pie_fig = go.Figure(go.Pie(labels=["Main Supplier", "Backup", "Other"],
-                               values=[50, 30, 20],
-                               hole=.4))
-    pie_fig.update_traces(marker=dict(colors=["#f59e0b", "#10b981", "#3b82f6"]))
-    pie_fig.update_layout(height=250, margin=dict(l=20, r=20, t=30, b=0))
-    st.plotly_chart(pie_fig, use_container_width=True)
-
-st.markdown("### 🚧 Mitigation Plan")
-st.markdown("""
-<div class='card'>
-    <h4>🚀 Diversify Supplier Base</h4>
-    <p><b>Objective:</b> Reduce single-source dependency</p>
-    <p><b>Timeline:</b> 3-6 months</p>
-    <p><b>Owner:</b> Supply Chain Manager</p>
-    <p><b>KPIs:</b> Supplier mix, lead time</p>
-</div>
 """, unsafe_allow_html=True)
-
-st.markdown("### 📂 Upload Your Data")
-uploaded_file = st.file_uploader("Upload CSV or Excel", type=["csv", "xlsx"])
-if uploaded_file:
-    df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith(".csv") else pd.read_excel(uploaded_file)
-    st.write("Preview:", df.head())
-
-st.download_button("Download Sample Template", data="Supplier,Location,RiskScore\n", file_name="sample_template.csv")
 
 st.markdown("---")
-st.markdown("<center><small>🔄 Beta v0.2 | ©2025 SupplySight</small></center>", unsafe_allow_html=True)
+
+# ---- SIDEBAR ----
+st.sidebar.header("Upload Your Data")
+uploaded_file = st.sidebar.file_uploader("Upload CSV or Excel file", type=["csv", "xlsx"])
+
+# Sample file download
+def download_sample():
+    sample_data = pd.DataFrame({
+        'Supplier': ['ABC Corp', 'XYZ Inc', 'Delta LLC'],
+        'Cost': [10000, 12000, 9000],
+        'Lead Time': [12, 18, 10],
+        'Geographic Risk': [3, 7, 2],
+        'Dependency Score': [9, 6, 4]
+    })
+    buffer = BytesIO()
+    sample_data.to_excel(buffer, index=False)
+    buffer.seek(0)
+    b64 = base64.b64encode(buffer.read()).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download="sample_template.xlsx">📥 Download Sample Template</a>'
+    return href
+
+st.sidebar.markdown(download_sample(), unsafe_allow_html=True)
+
+# ---- MAIN LOGIC ----
+if uploaded_file:
+    try:
+        if uploaded_file.name.endswith(".csv"):
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+
+        st.success("✅ File successfully uploaded.")
+        st.write("### Preview of Uploaded Data", df.head())
+
+        # ---- Resilience Score Calculation ----
+        df['Resilience Score'] = 100 - (
+            (df['Cost'] / df['Cost'].max()) * 0.25 +
+            (df['Lead Time'] / df['Lead Time'].max()) * 0.25 +
+            (df['Geographic Risk'] / 10) * 0.25 +
+            (df['Dependency Score'] / 10) * 0.25
+        ) * 100
+
+        # ---- Visualization ----
+        fig = go.Figure()
+        color_map = []
+
+        for score in df['Resilience Score']:
+            if score >= 75:
+                color_map.append("green")
+            elif score >= 50:
+                color_map.append("orange")
+            else:
+                color_map.append("red")
+
+        fig.add_trace(go.Bar(
+            x=df['Supplier'],
+            y=df['Resilience Score'],
+            marker_color=color_map
+        ))
+
+        fig.update_layout(
+            title="Supply Chain Resilience Score by Supplier",
+            xaxis_title="Supplier",
+            yaxis_title="Resilience Score (0–100)",
+            height=400
+        )
+
+        st.plotly_chart(fig)
+
+        # ---- Mitigation Suggestions ----
+        st.markdown("### 🔧 AI-Powered Mitigation Suggestions")
+        for index, row in df.iterrows():
+            score = row['Resilience Score']
+            if score >= 75:
+                st.success(f"Supplier **{row['Supplier']}**: Low risk. Maintain current strategy.")
+            elif score >= 50:
+                st.warning(f"Supplier **{row['Supplier']}**: Moderate risk. Consider alternative suppliers and buffer inventory.")
+            else:
+                st.error(f"Supplier **{row['Supplier']}**: High risk. Urgently diversify supply chain and monitor closely.")
+
+    except Exception as e:
+        st.error("❌ Error processing file. Please check the format and column names.")
+        st.exception(e)
+else:
+    st.info("👈 Upload a file to get started.")
