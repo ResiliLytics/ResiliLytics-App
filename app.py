@@ -1,105 +1,155 @@
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
+import base64
 
-st.set_page_config(page_title="SupplySight", layout="wide")
+st.set_page_config(layout="wide", page_title="SupplySight Dashboard")
 
-# ---- LOGO SVG (simple swirl) ----
+# --- CUSTOM LOGO + HEADER ---
 logo_svg = """
-<svg width="38" height="38" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#ffab00"/><path d="M32 23c-4 8-19 6-16-4 2-6 14-5 13 1" fill="none" stroke="#00c853" stroke-width="3" stroke-linecap="round"/><path d="M23 13c-2-3-8-2-7 3" fill="none" stroke="#2979ff" stroke-width="3" stroke-linecap="round"/></svg>
+<svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="45" fill="#FFD700" />
+  <path d="M30 50 A20 20 0 0 1 70 50" stroke="#00BFFF" stroke-width="10" fill="none"/>
+  <circle cx="50" cy="50" r="5" fill="#FF4500"/>
+</svg>
 """
 
-# ---- HEADER ----
-st.markdown(f"""
-    <div style='text-align:center; display:flex; align-items:center; justify-content:center; gap:10px; padding:2rem 0 1rem 0;'>
+st.markdown(
+    f"""
+    <div style='display: flex; align-items: center; gap: 1rem; padding-bottom: 1rem;'>
         {logo_svg}
         <div>
-            <h1 style='color:#fff; margin-bottom:.1rem; display:inline;'>SupplySight Dashboard</h1>
-            <h3 style='color:#fafafa; font-weight:400; margin-top:.25rem;'>AI-powered SME Resilience & Risk</h3>
+            <h1 style='color: #ffffff; margin: 0;'>SupplySight Dashboard</h1>
+            <h4 style='color: #cccccc; margin-top: 0.2rem;'>AI-powered SME Resilience & Risk</h4>
         </div>
     </div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
-# ---- TOP ROW ----
-col1, col2, col3 = st.columns([1.1,1,1])
+# --- METRICS MOCK DATA ---
+resilience_score = 68
+supplier_concentration = "57%"
+cost_volatility = "Moderate"
+geo_exposure = "15 Countries"
+supply_risk = "High"
 
+# --- MOCK DIVERSIFICATION DATA ---
+diversification_data = {"Asia": 40, "Europe": 25, "Americas": 35}
+
+# --- LAYOUT START ---
+col1, col2, col3 = st.columns([2, 3, 3])
+
+# --- RESILIENCE SCORE GAUGE ---
 with col1:
-    st.markdown("#### Resilience Score")
+    st.markdown("### Resilience Score")
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
-        value=68,
+        value=resilience_score,
         gauge={
-            "axis": {"range": [0, 100]},
-            "bar": {"color": "#238823"},
-            "steps": [
-                {"range": [0, 50], "color": "#e74c3c"},
-                {"range": [50, 75], "color": "#f6c542"},
-                {"range": [75, 100], "color": "#43a047"},
+            'axis': {'range': [0, 100]},
+            'bar': {'color': "darkblue"},
+            'steps': [
+                {'range': [0, 50], 'color': "#D9534F"},
+                {'range': [50, 70], 'color': "#F0AD4E"},
+                {'range': [70, 100], 'color': "#5CB85C"},
             ],
-        },
-        domain={'x': [0, 1], 'y': [0, 1]}
+        }
     ))
-    fig.update_layout(height=220, margin=dict(l=0, r=0, t=30, b=0))
+    fig.update_layout(height=250, margin=dict(t=30, b=10))
     st.plotly_chart(fig, use_container_width=True)
 
+# --- KEY METRICS ---
 with col2:
-    st.markdown("#### Key Metrics")
-    c1, c2 = st.columns(2)
-    c1.markdown("<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; margin-bottom:6px; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>57%</span></div>", unsafe_allow_html=True)
-    c2.markdown("<div style='background:#228be6; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>15 Countries</span></div>", unsafe_allow_html=True)
-    c1.markdown("<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>Moderate</span></div>", unsafe_allow_html=True)
-    c2.markdown("<div style='background:#e67e22; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>High</span></div>", unsafe_allow_html=True)
+    st.markdown("### Key Metrics")
+    st.markdown(
+        """
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <div style="flex: 1; background-color: #FFC107; padding: 1rem; border-radius: 8px;">
+                <strong>Supplier Concentration</strong><br><span style="font-size: 1.5rem;">57%</span>
+            </div>
+            <div style="flex: 1; background-color: #007BFF; padding: 1rem; border-radius: 8px;">
+                <strong>Geographic Exposure</strong><br><span style="font-size: 1.5rem;">15 Countries</span>
+            </div>
+            <div style="flex: 1; background-color: #DC3545; padding: 1rem; border-radius: 8px; color: white;">
+                <strong>Cost Volatility</strong><br><span style="font-size: 1.5rem;">Moderate</span>
+            </div>
+            <div style="flex: 1; background-color: #FD7E14; padding: 1rem; border-radius: 8px; color: white;">
+                <strong>Supply Risk</strong><br><span style="font-size: 1.5rem;">High</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
+# --- RECOMMENDATIONS ---
 with col3:
-    st.markdown("#### Recommendations")
-    st.markdown("""
-    <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia</div>
-    <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
-    <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
-    """, unsafe_allow_html=True)
+    st.markdown("### Recommendations")
+    st.markdown(
+        """
+        <ul style="list-style: none; padding-left: 0;">
+            <li style="background-color: #28a745; color: white; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 6px;">
+                ✅ Evaluate alternate suppliers in East Asia
+            </li>
+            <li style="background-color: #ffc107; color: black; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 6px;">
+                📄 Increase buffer inventory for key items
+            </li>
+            <li style="background-color: #007bff; color: white; padding: 0.5rem; border-radius: 6px;">
+                ⬇️ Download Project Brief: Supplier Diversification
+            </li>
+        </ul>
+        """,
+        unsafe_allow_html=True
+    )
 
+# --- RISK INSIGHTS ---
+col4, col5, col6 = st.columns([2, 2, 3])
+
+with col4:
+    st.markdown("### Risk Insights")
+    bar_fig = go.Figure()
+    bar_fig.add_trace(go.Bar(x=["Jan", "Feb", "Mar", "Apr", "May", "Jun"], y=[2, 4, 6, 8, 10, 14], marker_color='dodgerblue'))
+    bar_fig.update_layout(height=300, margin=dict(t=20, b=20))
+    st.plotly_chart(bar_fig, use_container_width=True)
+
+# --- SUPPLIER DIVERSIFICATION ---
+with col5:
+    st.markdown("### Supplier Diversification")
+    pie_fig = go.Figure(data=[go.Pie(
+        labels=list(diversification_data.keys()),
+        values=list(diversification_data.values()),
+        hole=.4
+    )])
+    pie_fig.update_traces(marker=dict(line=dict(color='#000000', width=1)))
+    pie_fig.update_layout(height=300, showlegend=True)
+    st.plotly_chart(pie_fig, use_container_width=True)
+
+# --- MITIGATION PLAN ---
+with col6:
+    st.markdown("### Mitigation Plan")
+    st.markdown(
+        """
+        <div style="background-color: #FFF3CD; color: #333; padding: 1rem; border-radius: 8px;">
+            <strong>Diversify Supplier Base</strong><br>
+            <em>Objective:</em> Reduce single-source dependency<br>
+            <em>Timeline:</em> 3–6 months<br>
+            <em>Owner:</em> Supply Chain Manager<br>
+            <em>KPIs:</em> Supplier mix, lead time
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# --- FILE UPLOAD SECTION ---
 st.markdown("---")
+st.markdown("### Upload Your Data")
 
-# ---- MID ROW ----
-mid1, mid2, mid3 = st.columns([1,1,1])
+st.markdown(
+    "<span style='color: #cccccc;'>Upload your .csv or .xlsx file below. <a href='#' style='color: #4da6ff;'>Download Sample Template</a></span>",
+    unsafe_allow_html=True
+)
 
-with mid1:
-    st.markdown("#### Risk Insights")
-    fig2 = go.Figure(go.Bar(
-        x=['Jan','Feb','Mar','Apr','May','Jun'],
-        y=[2,4,6,8,10,14],
-        marker_color="#228be6"
-    ))
-    fig2.update_layout(height=200, margin=dict(l=10, r=10, t=40, b=10))
-    st.plotly_chart(fig2, use_container_width=True)
-
-with mid2:
-    st.markdown("#### Supplier Diversification")
-    fig3 = go.Figure(go.Pie(
-        values=[40, 35, 25],
-        labels=['Asia','Europe','Americas'],
-        hole=0.6
-    ))
-    fig3.update_traces(marker=dict(colors=['#43a047','#f6c542','#228be6']))
-    fig3.update_layout(showlegend=True, height=200, margin=dict(t=30,b=10,l=10,r=10))
-    st.plotly_chart(fig3, use_container_width=True)
-
-with mid3:
-    st.markdown("#### Mitigation Plan")
-    st.markdown("""
-    <div style='background:#fff3cd; border-radius:10px; padding:1.2rem; border:1px solid #ffe066; color:#111;'>
-        <b>Objective:</b> Reduce single-source dependency<br>
-        <b>Timeline:</b> 3–6 months<br>
-        <b>Owner:</b> Supply Chain Manager<br>
-        <b>KPIs:</b> Supplier mix, lead time
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("---")
-
-# ---- BOTTOM: Upload Section ----
-st.markdown("### <span style='color:#fff;'>Upload Your Data</span>", unsafe_allow_html=True)
-st.markdown("<span style='color:#7ecfff; font-size:1rem;'>Upload your .csv or .xlsx file below. <a href='https://yourdomain.com/sample_template.xlsx' style='color:#f6c542; text-decoration:underline;'>Download Sample Template</a></span>", unsafe_allow_html=True)
-st.file_uploader("Choose file", type=['csv','xlsx'])
-
-st.caption("Beta dashboard UI preview — layout matches approved mockup. Replace demo values with calculations after layout approval.")
+uploaded_file = st.file_uploader("Choose file", type=["csv", "xlsx"])
+if uploaded_file:
+    df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
+    st.dataframe(df)
