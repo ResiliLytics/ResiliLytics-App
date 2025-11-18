@@ -4,14 +4,12 @@ import pandas as pd
 
 st.set_page_config(page_title="SupplySight", layout="wide")
 
-# ---- HEADER WITH LOGO ----
+# ---- HEADER ----
 st.markdown("""
-    <div style='display:flex; align-items:center; gap:1rem; padding: 1rem 0 1rem 0;'>
-        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_transparent.png/120px-Logo_transparent.png' style='height:60px;'>
-        <div>
-            <h1 style='color: #ffffff; margin: 0;'>SupplySight Dashboard</h1>
-            <h3 style='color: #d0d8e8; font-weight:400; margin:0;'>AI-powered SME Resilience & Risk</h3>
-        </div>
+    <div style='text-align: center; padding: 2rem 0 1.5rem 0;'>
+        <img src="https://img.icons8.com/fluency/48/insight.png" alt="SupplySight Logo" style='vertical-align: middle; margin-right: 10px;'/>
+        <h1 style='color: #f1f1f1; display: inline;'>SupplySight Dashboard</h1>
+        <h3 style='color: #d0d0d0; font-weight:400; margin-top: 0.5rem;'>AI-powered SME Resilience & Risk</h3>
     </div>
 """, unsafe_allow_html=True)
 
@@ -40,10 +38,10 @@ with col1:
 with col2:
     st.markdown("#### Key Metrics")
     c1, c2 = st.columns(2)
-    c1.markdown("<div style='background:#f6c542; padding:1rem; border-radius:12px; color:#222; margin-bottom:6px; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>57%</span></div>", unsafe_allow_html=True)
-    c2.markdown("<div style='background:#228be6; padding:1rem; border-radius:12px; color:#fff; margin-bottom:6px; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>15 Countries</span></div>", unsafe_allow_html=True)
-    c1.markdown("<div style='background:#e74c3c; padding:1rem; border-radius:12px; color:#fff; margin-bottom:6px; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>Moderate</span></div>", unsafe_allow_html=True)
-    c2.markdown("<div style='background:#e67e22; padding:1rem; border-radius:12px; color:#fff; margin-bottom:6px; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>High</span></div>", unsafe_allow_html=True)
+    c1.markdown("<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; margin-bottom:6px; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>57%</span></div>", unsafe_allow_html=True)
+    c2.markdown("<div style='background:#228be6; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>15 Countries</span></div>", unsafe_allow_html=True)
+    c1.markdown("<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>Moderate</span></div>", unsafe_allow_html=True)
+    c2.markdown("<div style='background:#e67e22; padding:1rem; border-radius:10px; color:#fff; margin-bottom:6px; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>High</span></div>", unsafe_allow_html=True)
 
 with col3:
     st.markdown("#### Recommendations")
@@ -82,8 +80,8 @@ with mid2:
 with mid3:
     st.markdown("#### Mitigation Plan")
     st.markdown("""
-    <div style='background:#fff3cd; border-radius:10px; padding:1.2rem; border:1px solid #ffe066; color:#222;'>
-        <b>Objective:</b> Reduce single source dependency<br>
+    <div style='background:#fff3cd; color:#111; border-radius:10px; padding:1.2rem; border:1px solid #ffe066;'>
+        <b>Objective:</b> Reduce single-source dependency<br>
         <b>Timeline:</b> 3–6 months<br>
         <b>Owner:</b> Supply Chain Manager<br>
         <b>KPIs:</b> Supplier mix, lead time
@@ -94,9 +92,10 @@ st.markdown("---")
 
 # ---- BOTTOM: Upload Section ----
 st.markdown("### Upload Your Data")
-st.info("""
-    <span style='color:white;'>Upload your <code>.csv</code> or <code>.xlsx</code> file below.</span>
-    <a href='https://yourdomain.com/sample_template.xlsx' style='color:lightblue;' target='_blank'>Download Sample Template</a>
+st.markdown("""
+<div style='color:#ccc; font-size:0.95rem;'>
+    Upload your .csv or .xlsx file below. <a href='https://yourdomain.com/sample_template.xlsx' style='color:#91caff;'>Download Sample Template</a>
+</div>
 """, unsafe_allow_html=True)
 
 st.file_uploader("Choose file", type=['csv', 'xlsx'])
