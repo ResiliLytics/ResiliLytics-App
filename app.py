@@ -8,7 +8,7 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 
 st.markdown("""
     <div style='text-align: center; padding: 0.5rem 0 0rem 0;'>
-        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/main/logo.png' alt='SupplySight Logo' width='90' style='margin-bottom:-10px;'/>
+        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/main/logo.png' alt='SupplySight Logo' width='300' style='margin-bottom:-10px;'/>
         <h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>SupplySight Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400; margin-top: -0.5rem;'>AI-powered SME Resilience & Risk</h3>
     </div>
