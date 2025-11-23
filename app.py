@@ -7,7 +7,7 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 # ---- HEADER ----
 st.markdown("""
     <div style='text-align: center; padding: 1.5rem 0 1rem 0;'>
-        https://github.com/AuraFusion/supplysight-assets/blob/main/SupplySight%20Logo.png
+        https://github.com/AuraFusion/supplysight-assets/blob/23dc1f892e5cff95ecd4921d9e6344a1b3eaa585/SupplySight%20Logo.png
         <h1 style='color: #ffffff; margin-bottom: .25rem;'>SupplySight Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400;'>AI-powered SME Resilience & Risk</h3>
     </div>
