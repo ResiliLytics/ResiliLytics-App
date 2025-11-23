@@ -8,7 +8,7 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 
 st.markdown("""
     <div style='text-align: center; padding: 0; margin: 0; line-height: 1;'>
-        <img src='/mnt/data/c629b328-5181-42be-9ad1-ae1f0d850566.png' alt='SupplySight Logo' width='300' style='display: block; margin: 0 auto -20px auto;'/>
+        <img src='/mnt/data/c629b328-5181-42be-9ad1-ae1f0d850566.png' alt='SupplySight Logo' width='300' style='display: block; margin: 0 auto -10px auto;'/>
         <h1 style='color: #ffffff; margin: 0; padding: 0;'>SupplySight Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400; margin: 0; padding: 0;'>AI-powered SME Resilience & Risk</h3>
     </div>
