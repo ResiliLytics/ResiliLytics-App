@@ -6,15 +6,9 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 
 # ---- HEADER ----
 
-import streamlit as st
-from PIL import Image
-
-# Load logo from local path (already uploaded to Streamlit)
-logo = Image.open("a8321e5f-89f0-4660-b012-9a969b7e202d.png")
-st.image(logo, width=60)
-
 st.markdown("""
     <div style='text-align: center; padding: 1.5rem 0 1rem 0;'>
+        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/4cb153a9d4e14cb6690344b4f1e0adaf209651db/logo.png' alt='SupplySight Logo' width='60' style='margin-bottom:10px;'/>
         <h1 style='color: #ffffff; margin-bottom: .25rem;'>SupplySight Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400;'>AI-powered SME Resilience & Risk</h3>
     </div>
