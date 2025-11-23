@@ -87,7 +87,7 @@ if uploaded_file:
     st.markdown("---")
     st.dataframe(df.head())
 else:
-    st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
+    st.markdown("### Dashboard Preview (Please upload a file ↑ to view dynamic metrics)")
     st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
 
 
