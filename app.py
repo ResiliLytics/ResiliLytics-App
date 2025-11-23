@@ -6,13 +6,10 @@ st.set_page_config(page_title="SupplySight", layout="wide")
 
 # ---- HEADER ----
 st.markdown("""
-    <div style='text-align: center; padding: 0.5rem 0 0.5rem 0;'>
-        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/4cb153a9d4e14cb6690344b4f1e0adaf209651db/logo.png' 
-             alt='SupplySight Logo' 
-             width='120'  <!-- increase width for bigger logo -->
-             style='margin-bottom:4px; display:block; margin-left:auto; margin-right:auto;'/>
-        <h1 style='color: #ffffff; margin-top:0; margin-bottom:0.25rem;'>SupplySight Dashboard</h1>
-        <h3 style='color: #bbbbbb; font-weight:400; margin-top:0;'>AI‑powered SME Resilience & Risk</h3>
+    <div style='text-align: center; padding: 1.5rem 0 1rem 0;'>
+        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/main/logo.png' alt='SupplySight Logo' width='300' style='margin-bottom:10px;'/>
+        <h1 style='color: #ffffff; margin-bottom: .25rem;'>SupplySight Dashboard</h1>
+        <h3 style='color: #bbbbbb; font-weight:400;'>AI-powered SME Resilience & Risk</h3>
     </div>
 """, unsafe_allow_html=True)
 
