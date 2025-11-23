@@ -88,7 +88,7 @@ if uploaded_file:
     st.dataframe(df.head())
 else:
     st.markdown("""
-<div style='background-color: #2a2f36; color: #ffffff; display: inline-block; padding: 8px 14px; border-radius: 6px; font-size: 2.1rem; Bold'> Please upload a file to view dynamic metrics.</div>""", unsafe_allow_html=True)
+<div style='background-color: #2a2f36; color: #ffffff; display: inline-block; padding: 8px 14px; border-radius: 6px; font-size: 3.1rem;'> Please upload a file to view dynamic metrics</div>""", unsafe_allow_html=True)
 
 st.markdown("### Dashboard Preview")
 st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
