@@ -89,5 +89,5 @@ if uploaded_file:
 else:
     st.info("Please upload a file to view dynamic metrics.")
 
-st.markdown("### Dashboard Preview")
-st.image("https://github.com/AuraFusion/supplysight-assets/blob/6f8185ac2c43f3798cf019254a8ad64bd1b2e007/Final%20Dashboard%20Sample.png", caption="This is what your dashboard will look like after upload", use_column_width=True)
+https://raw.githubusercontent.com/AuraFusion/supplysight-assets/main/Final%20Dashboard%20Sample.png
+
