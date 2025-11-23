@@ -87,7 +87,7 @@ if uploaded_file:
     st.markdown("---")
     st.dataframe(df.head())
 else:
-st.markdown("""
+    st.markdown("""
 <div style='background-color: #91caff; color: #ffffff; display: inline-block; padding: 8px 14px; border-radius: 6px; font-size: 1.5rem;'> Please upload a file to view dynamic metrics</div>""", unsafe_allow_html=True)
 
 
