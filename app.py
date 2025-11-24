@@ -89,6 +89,8 @@ if uploaded_file:
 else:
     st.markdown("### 📽️ Need Help?")
     st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
+    st.markdown("💬 [Frequently Asked Questions](https://yourfaqpage.com) — get quick answers to common issues.")
+
     st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
     st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
 
