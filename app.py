@@ -90,18 +90,15 @@ else:
     st.markdown("### 📽️ Need Help?")
     st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
     st.markdown("💬 [Frequently Asked Questions](https://yourfaqpage.com) — get quick answers to common issues.")
-    st.markdown("### 📬 Share Your Feedback")
+    st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
+    st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
+
+ st.markdown("### 📬 Share Your Feedback")
 feedback = st.text_area("We’d love to hear your thoughts. What’s working? What’s confusing?")
 
 if st.button("Submit Feedback"):
     st.success("✅ Thanks for your feedback! We'll review it shortly.")
     # Optional: save to a file/database/email
-
-
-    st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
-    st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
-
-
 
 
 
