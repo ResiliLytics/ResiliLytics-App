@@ -17,18 +17,14 @@ st.markdown("""
 # ---- UPLOAD SECTION ----
 st.markdown("### Upload Your Data")
 uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
-
 st.markdown("""
-<div style='background-color: #1e3a5f; padding: 0.75rem; border-radius: 10px; margin-top: 10px;'>
-    <span style='color:#ffffff; font-size:1rem;'>📥 Upload your <b>.csv</b> or <b>.xlsx</b> file with the required columns:<br>
-    Supplier, Country, Spend, Cost_Per_Unit, Historical_Costs</span><br>
-    <a href='/mnt/data/sample_template.xlsx' style='color:#91caff;'>📄 Download Sample Template</a>
+<div style='color:#ccc; font-size:0.95rem;'>
+    Upload your .csv or .xlsx file with columns: Supplier, Country, Spend, Cost_Per_Unit, Historical_Costs<br>
+    <a href='/mnt/data/sample_template.xlsx' style='color:#91caff;'>Download Sample Template</a>
 </div>
 """, unsafe_allow_html=True)
-
 st.markdown("---")
 
-# ---- PROCESSING FILE ----
 if uploaded_file:
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
@@ -90,29 +86,20 @@ if uploaded_file:
 
     st.markdown("---")
     st.dataframe(df.head())
-
 else:
     st.markdown("### 📽️ Need Help?")
-    st.markdown("""
-    <div style='background:#e0f0ff; padding:1rem; border-radius:10px; margin-bottom:1rem; color:#003366;'>
-        Please upload a file above to view dynamic metrics.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
+    st.markdown("💬 [Frequently Asked Questions](https://yourfaqpage.com) — get quick answers to common issues.")
+    st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
+    st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
 
-    # Dashboard Preview Image
-    st.markdown("### 🖼️ Dashboard Preview")
-    st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true", caption="This is what your dashboard will look like after upload")
-
-    # Tutorial & FAQ
-    st.markdown("### 🧠 Learn & Explore")
-    st.markdown("""
-    ▶️ <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#007BFF;'>Watch a 3-minute tutorial</a><br>
-    ❓ <a href='https://yourfaqpage.com' target='_blank' style='color:#007BFF;'>Visit the FAQ Page</a>
-    """, unsafe_allow_html=True)
-
-    # Feedback Section
     st.markdown("### 📬 Share Your Feedback")
     feedback = st.text_area("We’d love to hear your thoughts. What’s working? What’s confusing?")
 
-    if st.button("Submit Feedback"):
-        st.success("✅ Thanks for your feedback! We'll review it shortly.")
+if st.button("Submit Feedback"):
+    st.success("✅ Thanks for your feedback! We'll review it shortly.")
+    # Optional: save to a file/database/email
+
+
+
+
