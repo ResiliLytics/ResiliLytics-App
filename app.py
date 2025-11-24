@@ -25,6 +25,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.markdown("---")
 
+ st.markdown("### 📽️ Need Help?")
+    st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
+
 if uploaded_file:
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
