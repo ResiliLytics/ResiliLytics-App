@@ -8,8 +8,8 @@ st.set_page_config(page_title="Sourcelytics", layout="wide")
 # ---- HEADER ----
 st.markdown("""
     <div style='text-align: center; padding: 0.5rem 0 0rem 0;'>
-        <img src='https://raw.githubusercontent.com/AuraFusion/supplysight-assets/main/logo.png' alt='SupplySight Logo' width='360' style='margin-bottom:-150px;'/>
-        <h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>SupplySight Dashboard</h1>
+        <img src='https://raw.githubusercontent.com/AuraFusion/Sourcelytics-assets/main/logo.png' alt='Sourcelytics Logo' width='360' style='margin-bottom:-150px;'/>
+        <h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>Sourcelytics Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400; margin-top: -0.5rem;'>AI-powered SME Resilience & Risk</h3>
     </div>
 """, unsafe_allow_html=True)
@@ -91,7 +91,7 @@ else:
     st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
     st.markdown("💬 [Frequently Asked Questions](https://yourfaqpage.com) — get quick answers to common issues.")
     st.markdown("### Dashboard Preview (Please upload a file above to view dynamic metrics)")
-    st.image("https://github.com/AuraFusion/supplysight-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
+    st.image("https://github.com/AuraFusion/Sourcelytics-assets/blob/main/Final%20Dashboard%20Sample.png?raw=true")
 
     st.markdown("### 📊 How Metrics Are Calculated")
     st.markdown("""
