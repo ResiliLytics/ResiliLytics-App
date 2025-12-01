@@ -1,6 +1,6 @@
-# 🚀 Sourcelytics — AI-Powered Resilience & Risk Dashboard for SMEs
+# 🚀 ResiliLytics — AI-Powered Resilience & Risk Dashboard for SMEs
 
-**Sourcelytics** is an AI-powered dashboard that helps small and medium-sized enterprises (SMEs) evaluate, visualize, and strengthen their supply chain resilience — using minimal data inputs.
+**ResiliLytics** is an AI-powered dashboard that helps small and medium-sized enterprises (SMEs) evaluate, visualize, and strengthen their supply chain resilience — using minimal data inputs.
 
 This is a **free beta pilot** version created to support international founders (e.g. EB1A, EB2-NIW eligibility) with innovation, impact, and scalable benefit to the U.S. economy.
 
@@ -8,7 +8,7 @@ This is a **free beta pilot** version created to support international founders 
 
 ## 🧠 What It Does
 
-Sourcelytics analyzes uploaded supply chain data and provides:
+ResiliLytics analyzes uploaded supply chain data and provides:
 
 - ✅ **Resilience Score** (color-coded)
 - 📊 **Key Metrics**: Supplier concentration, geographic exposure, supply risk, etc.
@@ -24,7 +24,7 @@ All with a clean, interactive interface — no coding required.
 
 ### 🔗 Try the App
 
-👉 [**Launch Sourcelytics App**](https://aurafusion-Sourcelytics.streamlit.app/)
+👉 [**Launch ResiliLytics App**](https://aurafusion-ResiliLytics.streamlit.app/)
 
 ---
 
@@ -32,7 +32,7 @@ All with a clean, interactive interface — no coding required.
 
 1. Prepare a `.csv` or `.xlsx` file with your supply chain data
 2. Upload it via the app interface
-3. Let Sourcelytics auto-generate your resilience score and action plan
+3. Let ResiliLytics auto-generate your resilience score and action plan
 
 Need help? Download a sample template below.
 
@@ -42,8 +42,8 @@ Need help? Download a sample template below.
 
 Download the file and use it as a guide:
 
-📥 [Sample Template (CSV)](https://raw.githubusercontent.com/AuraFusion/Sourcelytics/main/sample_template.csv)  
-📥 [Sample Template (Excel)](https://raw.githubusercontent.com/AuraFusion/Sourcelytics/main/sample_template.xlsx)
+📥 [Sample Template (CSV)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.csv)  
+📥 [Sample Template (Excel)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.xlsx)
 
 *(Right-click → “Save link as…”)*
 
@@ -73,7 +73,7 @@ This pilot app supports a real-world EB2-NIW/EB1A immigration case for a student
 
 ## 📫 Contact
 
-Questions? Ideas? Reach out via [GitHub Issues](https://github.com/AuraFusion/Sourcelytics/issues) or email the project team.
+Questions? Ideas? Reach out via [GitHub Issues](https://github.com/AuraFusion/ResiliLytics/issues) or email the project team.
 
 ---
 
