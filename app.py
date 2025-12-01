@@ -8,7 +8,7 @@ st.set_page_config(page_title="ResiliLytics", layout="wide")
 # ---- HEADER ----
 st.markdown("""
     <div style='text-align: center; padding: 0.5rem 0 0rem 0;'>
-        <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/4087e3382897ab0951a52e3b31e6e393b7cbca0c/Logo.png' alt='ResiliLytics Logo' width='360' style='margin-bottom:-150px;'/>
+        <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/main/Logo.png' alt='ResiliLytics Logo' width='360' style='margin-bottom:-150px;'/>
         <h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>ResiliLytics Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400; margin-top: -0.5rem;'>SME Resilience + AI + Risk-to-Action</h3>
     </div>
