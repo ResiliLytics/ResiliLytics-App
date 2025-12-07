@@ -143,7 +143,7 @@ with tab3:
     st.markdown("Fill out the form below. We'll get back to you as soon as possible.")
 
     contact_form = """
-    <form action="https://formspree.io/f/mnqeygkd" method="POST">
+    https://formspree.io/f/xrbnaeqd
         <label for="name">Your Name</label><br>
         <input type="text" name="name" required style="width:100%;"><br><br>
         <label for="email">Your Email</label><br>
