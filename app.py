@@ -124,23 +124,28 @@ with tab2:
 
 # ---- CONTACT TAB ----
 with tab3:
-    st.markdown("## 📬 Contact Us")
+    st.markdown("## 📨 Contact Us")
     st.markdown("Have feedback, suggestions, or want to collaborate? Fill out the form below.")
 
-    st.markdown("""
+    contact_form = """
     <form action="https://formspree.io/f/xrbnaeqd" method="POST">
         <label for="email">Your email:</label><br>
-        <input type="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+        <input type="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
 
         <label for="message">Your message:</label><br>
-        <textarea name="message" rows="5" required style="width: 100%; padding: 8px;"></textarea><br>
+        <textarea name="message" rows="5" required style="width: 100%; padding: 8px;"></textarea><br><br>
 
-        <button type="submit" style="background-color:#228be6; color:white; padding: 10px 20px; border:none; border-radius:5px; cursor:pointer;">
+        <button type="submit" style="
+            background-color:#228be6;
+            color:white;
+            padding: 10px 20px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;">
             Send
         </button>
     </form>
+    <p style="font-size: 0.85em; margin-top: 10px;">Tip: To reduce spam, you can add a honeypot field or enable reCAPTCHA in your <a href='https://dashboard.formspree.io' target='_blank'>Formspree dashboard</a>.</p>
+    """
+    st.markdown(contact_form, unsafe_allow_html=True)
 
-    <p style="font-size: 0.85em; color: gray; margin-top: 10px;">
-        Tip: To reduce spam, you can add a honeypot field or enable reCAPTCHA in your <a href="https://formspree.io/dashboard" target="_blank">Formspree dashboard</a>.
-    </p>
-    """, unsafe_allow_html=True)
