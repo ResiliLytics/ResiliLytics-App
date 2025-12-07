@@ -75,11 +75,14 @@ The tool supports **academic, policy, and SME research** with scalable real-worl
 
 Have questions, feedback, or want to collaborate?
 
-📬 [Submit a Contact Form](https://formspree.io/f/mnqeygkd)
+📬 [Submit a Contact Form](https://formspree.io/f/xrbnaeqd)
 
-Alternatively, use the form directly in the app under the **📬 Contact** tab.
+Alternatively, you can use the form directly in the app under the **📬 Contact** tab.
 
 ---
+
+
+> 🧡 *Built to help resilient entrepreneurs build resilient supply chains.*
 
 > 🧡 *Built to help resilient entrepreneurs build resilient supply chains.*
 
