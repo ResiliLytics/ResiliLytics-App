@@ -124,27 +124,30 @@ with tab2:
 
 # ---- CONTACT TAB ----
 with tab3:
-    st.markdown("## 📨 Contact Us")
+    st.markdown("## 📧 Contact Us")
     st.markdown("Have feedback, suggestions, or want to collaborate? Fill out the form below.")
 
     contact_form = """
-    <form action="https://formspree.io/f/xrbnaeqd" method="POST">
-        <label for="email">Your email:</label><br>
-        <input type="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
+        <form action="https://formspree.io/f/xrbnaeqd" method="POST">
+            <label for="email">Your email:</label><br>
+            <input type="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
 
-        <label for="message">Your message:</label><br>
-        <textarea name="message" rows="5" required style="width: 100%; padding: 8px;"></textarea><br><br>
+            <label for="message">Your message:</label><br>
+            <textarea name="message" rows="5" required style="width: 100%; padding: 8px;"></textarea><br><br>
 
-        <button type="submit" style="
-            background-color:#228be6;
-            color:white;
-            padding: 10px 20px;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;">
-            Send
-        </button>
-    </form>
+            <!-- Honeypot field (hidden) -->
+            <input type="text" name="_gotcha" style="display:none">
+
+            <button type="submit" style="
+                background-color:#228be6;
+                color:white;
+                padding: 10px 20px;
+                border:none;
+                border-radius:5px;
+                cursor:pointer;
+            ">Send</button>
+        </form>
+    """
 
     st.markdown(contact_form, unsafe_allow_html=True)
 
