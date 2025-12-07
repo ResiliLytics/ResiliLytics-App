@@ -134,7 +134,7 @@ st.markdown("""
     <br><br>
     This application <strong>does not offer paid services</strong> and <strong>is not affiliated with any business entity</strong>. The developer is an F‑1 visa student and is not engaged in commercial activity. Data uploaded is processed temporarily and not stored.
     <br><br>
-    The tool is part of a portfolio supporting a U.S. EB‑1A / EB‑2 NIW petition for exceptional ability and national interest contribution. No income is derived from this tool.
+    The tool is part of a portfolio supporting a U.S. for exceptional ability and national interest contribution. No income is derived from this tool.
 </div>
 """, unsafe_allow_html=True)
 
