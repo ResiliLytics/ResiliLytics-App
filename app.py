@@ -10,7 +10,7 @@ st.set_page_config(page_title="ResiliLytics", layout="wide")
 logo_url = "https://raw.githubusercontent.com/ResiliLytics/ResiliLytics-assets/main/Logo.png"
 st.image(logo_url, width=80)
 
-# Navigation Tabs
+# Tabs
 tab1, tab2 = st.tabs(["🏠 Home", "📊 Dashboard"])
 
 # ---- HOME TAB ----
@@ -46,14 +46,10 @@ with tab1:
     - End-to-end data-to-action transformation — not previously available in one open-access interface.
 
     The platform is developed in support of ongoing academic and professional research on improving SME supply-chain resilience through intelligent systems.
+    """)
 
-    ---
-    """, unsafe_allow_html=True)
-
-    # Dashboard Preview
     dashboard_url = "https://raw.githubusercontent.com/ResiliLytics/ResiliLytics-assets/main/ResiliLytics-Dashboard-Snapshot.png"
     st.image(dashboard_url, caption="Preview: ResiliLytics Dashboard", use_column_width=True)
-
 
 # ---- DASHBOARD TAB ----
 with tab2:
@@ -64,7 +60,6 @@ with tab2:
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
-        # Calculations
         total_spend = df['Spend'].sum()
         top_supplier_pct = df.groupby('Supplier')['Spend'].sum().max() / total_spend * 100
         num_countries = df['Country'].nunique()
@@ -84,7 +79,6 @@ with tab2:
         volatility_level = "High" if avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
         risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
 
-        # Layout
         col1, col2, col3 = st.columns([1.1, 1, 1])
 
         with col1:
@@ -118,13 +112,12 @@ with tab2:
             st.markdown("""
             <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia<br><small>Timeline: 3–6 months</small></div>
             <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items<br><small>Timeline: 6 months</small></div>
-            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download project brief: Supplier Diversification<br><small>Region: Europe</small></div>
+            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Supplier Diversification Plan<br><small>Region: Europe</small></div>
             <div style='text-align:center; color:#999; font-size:0.8em;'>Replace demo values with calculations after approval.</div>
             """, unsafe_allow_html=True)
 
         st.markdown("---")
         st.dataframe(df.head())
-
     else:
         st.info("Please upload a file to view the dashboard.")
 
