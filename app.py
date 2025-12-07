@@ -145,7 +145,6 @@ with tab3:
             Send
         </button>
     </form>
-    <p style="font-size: 0.85em; margin-top: 10px;">Tip: To reduce spam, you can add a honeypot field or enable reCAPTCHA in your <a href='https://dashboard.formspree.io' target='_blank'>Formspree dashboard</a>.</p>
-    """
+
     st.markdown(contact_form, unsafe_allow_html=True)
 
