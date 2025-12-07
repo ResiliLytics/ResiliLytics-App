@@ -1,80 +1,85 @@
-# 🚀 ResiliLytics — AI-Powered Resilience & Risk Dashboard for SMEs
+# 🚀 ResiliLytics — AI-Powered Supply Chain Resilience Dashboard
 
-**ResiliLytics** is an AI-powered dashboard that helps small and medium-sized enterprises (SMEs) evaluate, visualize, and strengthen their supply chain resilience — using minimal data inputs.
+**ResiliLytics** is a smart, AI-assisted dashboard that helps small and medium-sized enterprises (SMEs) evaluate, visualize, and improve their **supply chain resilience** using minimal data inputs and real-time insights.
 
-This is a **free beta pilot** version created to support international founders (e.g. EB1A, EB2-NIW eligibility) with innovation, impact, and scalable benefit to the U.S. economy.
+This is a **free beta pilot** created as an original contribution to promote innovation, strategic supply planning, and scalable benefit to the global economy — with special relevance to international founders, researchers, and SME leaders.
 
 ---
 
 ## 🧠 What It Does
 
-ResiliLytics analyzes uploaded supply chain data and provides:
+ResiliLytics automatically analyzes your uploaded supply chain data to provide:
 
-- ✅ **Resilience Score** (color-coded)
-- 📊 **Key Metrics**: Supplier concentration, geographic exposure, supply risk, etc.
-- 🔍 **Risk Insights**: Charts, supplier diversification analysis
-- 💡 **AI-Driven Recommendations**
-- 🛠️ **Mitigation Plan Generator**
+- ✅ **Resilience Score** (color-coded gauge)
+- 📊 **Key Metrics** — Supplier concentration, geographic exposure, cost volatility, and more
+- 🌐 **Geographic Insights** — Visuals by region and diversification
+- 💡 **AI-Generated Recommendations**
+- 🛠️ **Actionable Mitigation Plan**
 
-All with a clean, interactive interface — no coding required.
+All in a clean, interactive interface — **no coding required**.
 
 ---
 
-## 📂 How To Use It
+## 📂 How To Use
 
 ### 🔗 Try the App
 
-👉 [**Launch ResiliLytics App**](https://aurafusion-ResiliLytics.streamlit.app/)
+👉 [**Launch ResiliLytics App**](https://aurafusion-resililytics.streamlit.app/)  
+*(Deployed via Streamlit Cloud)*
 
 ---
 
-### 📤 Upload Your Data
+### 📤 Upload Your Supply Chain Data
 
-1. Prepare a `.csv` or `.xlsx` file with your supply chain data
-2. Upload it via the app interface
-3. Let ResiliLytics auto-generate your resilience score and action plan
-
-Need help? Download a sample template below.
+1. Prepare your file as `.csv` or `.xlsx` using the sample template.
+2. Upload it in the **Dashboard** tab of the app.
+3. Instantly view your resilience score, risk metrics, and recommended next steps.
 
 ---
 
 ### ⬇️ Download Sample Template
 
-Download the file and use it as a guide:
+Use the template to format your data correctly:
 
-📥 [Sample Template (CSV)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.csv)  
-📥 [Sample Template (Excel)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.xlsx)
-
+📥 [Sample Template (.CSV)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.csv)  
+📥 [Sample Template (.XLSX)](https://raw.githubusercontent.com/AuraFusion/ResiliLytics/main/sample_template.xlsx)  
 *(Right-click → “Save link as…”)*
 
 ---
 
 ## 🛠️ Tech Stack
 
-- [Streamlit](https://streamlit.io/) — UI & dashboard framework
-- [Python](https://www.python.org/) — Core backend logic
-- [Plotly](https://plotly.com/python/) — Interactive visualizations
+- [Streamlit](https://streamlit.io/) — UI & dashboard interface
+- [Python](https://www.python.org/) — Logic and data processing
+- [Pandas](https://pandas.pydata.org/) — Data analysis
+- [Plotly](https://plotly.com/python/) — Visualizations (Gauge, Charts)
 - [GitHub](https://github.com/) — Version control and deployment
 - [Streamlit Cloud](https://streamlit.io/cloud) — Hosting
 
 ---
 
-## 👩🏽‍💼 Use Case
+## 🌍 Original Contribution
 
-This pilot app developed in support of ongoing academic and professional research on improving SME supply-chain resilience through intelligent systems.
+ResiliLytics represents an original, novel integration of:
 
-- Originality and innovation
-- National interest utility
-- Entrepreneurial impact
+- 🧪 **Automated resilience scoring**
+- 📉 **Dynamic supply risk classification**
+- 🌐 **Diversification metrics**
+- 🧭 **AI-powered recommendations and mitigation plans**
 
-📌 The app is **free to use** while legal approval is pending.
+The tool supports **academic, policy, and SME research** with scalable real-world applications.
 
 ---
 
 ## 📫 Contact
 
-Questions? Ideas? Reach out via [GitHub Issues](https://github.com/AuraFusion/ResiliLytics/issues) or email the project team.
+Have questions, feedback, or want to collaborate?
+
+📬 [Submit a Contact Form](https://formspree.io/f/mnqeygkd)
+
+Alternatively, use the form directly in the app under the **📬 Contact** tab.
 
 ---
 
 > 🧡 *Built to help resilient entrepreneurs build resilient supply chains.*
+
