@@ -164,7 +164,7 @@ Powered by data and guided by insight, ResiliLytics:
 Analyzes supplier risk exposure.
 Recommends mitigation strategies.
 Translates supply chain complexity into clear, actionable plans.
-🧠 What Makes It Unique?
+What Makes It Unique?
 ResiliLytics brings together:
 
 📦 Supply chain analytics
