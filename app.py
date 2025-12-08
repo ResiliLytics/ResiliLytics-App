@@ -64,8 +64,7 @@ st.markdown("""
 
 # ---- SIDEBAR ----
 st.sidebar.title("📊 ResiliLytics")
-page = st.sidebar.radio("Navigate", ["About", "Dashboard", "Contact"])
-
+page = st.sidebar.selectbox("Navigate", ["Dashboard", "About", "Contact"])
 # ---- HEADER ----
 st.markdown("""
 <div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 5rem;'>
@@ -156,11 +155,11 @@ if page == "Dashboard":
 
 # ---- PAGE: ABOUT ----
 
-st.markdown("## 📘 About ResiliLytics")
-st.markdown("""
-ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
+elif page == "About":
+    st.markdown("## ℹ️ About ResiliLytics")
+    st.markdown("""
+    ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
 """)
-
 with st.expander("Read full description"):
     st.markdown("""
     Powered by data and guided by insight, ResiliLytics:
