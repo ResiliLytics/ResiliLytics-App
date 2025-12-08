@@ -68,7 +68,7 @@ page = st.sidebar.radio("Navigate", ["About", "Dashboard", "Contact"])
 
 # ---- HEADER ----
 st.markdown("""
-<div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 0rem;'>
+<div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 10rem;'>
     <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/d3dc6cd2011816b6fe359d1867b286f4e7b07fa4/Logo%204.png?raw=true' alt='ResiliLytics Logo' width='120' style='margin-right: 20px;'/>
     <div>
         <h1 style='color: #fdf6e3; font-size: 3.5rem; margin: 0;'>ResiliLytics Dashboard</h1>
