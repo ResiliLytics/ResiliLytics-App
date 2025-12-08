@@ -156,31 +156,37 @@ if page == "Dashboard":
 
 # ---- PAGE: ABOUT ----
 
-st.markdown("**ResiliLytics Dashboard**")
-Sourcing Intelligence for Resilient Supply Chains
+st.markdown("## 📘 About ResiliLytics")
+st.markdown("""
 ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
+""")
 
-Powered by data and guided by insight, ResiliLytics:
+with st.expander("Read full description"):
+    st.markdown("""
+    Powered by data and guided by insight, ResiliLytics:
+    
+    - Analyzes supplier risk exposure  
+    - Recommends mitigation strategies  
+    - Translates supply chain complexity into clear, actionable plans  
 
-Analyzes supplier risk exposure.
-Recommends mitigation strategies.
-Translates supply chain complexity into clear, actionable plans.
-What Makes It Unique?
-ResiliLytics brings together:
+    ### 🧠 What Makes It Unique?
+    ResiliLytics brings together:
 
-* Supply chain analytics
-* Risk classification
-* AI-assisted insights
-* Decision-ready recommendations
-All in one simple, accessible tool, created for real-world SME challenges.
+    - 📦 Supply chain analytics  
+    - ⚠️ Risk classification  
+    - 🤖 AI-assisted insights  
+    - 🎯 Decision-ready recommendations  
 
-**Original Contribution**
-ResiliLytics introduces a novel approach to:
+    ### 🧪 Original Contribution
+    ResiliLytics introduces a novel approach to:
 
-Supply chain visualization.
-Dynamic diversification metrics.
-End-to-end data-to-action transformation (not previously available in one open-access interface).
-The platform is developed in support of ongoing academic and professional research on improving SME supply-chain resilience through intelligent systems.
+    - Supply chain visualization  
+    - Dynamic diversification metrics  
+    - End-to-end data-to-action transformation  
+
+    The platform supports ongoing research into improving SME supply-chain resilience through intelligent systems.
+    """)
+
 # ---- PAGE: CONTACT ----
 elif page == "Contact":
     st.markdown("### 📬 Contact Us")
