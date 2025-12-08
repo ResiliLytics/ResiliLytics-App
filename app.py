@@ -3,34 +3,10 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="ResiliLytics", layout="wide")
-
 st.markdown("""
-<style>
-.marquee-container {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #003366;
-    padding: 10px 0;
-    z-index: 9999;
-}
-.marquee-text {
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-</style>
-
-<div class="marquee-container">
-  <marquee behavior="scroll" direction="left" scrollamount="5"
-           onmouseover="this.stop();" onmouseout="this.start();"
-           class="marquee-text">
-    🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
-  </marquee>
+<div style='background: #002b36; padding: 0.5rem 1rem; border-radius: 6px; color: #91caff; font-size: 0.85rem; margin-bottom: 1rem;'>
+🔎 <strong>Note:</strong> This tool is part of a non-commercial academic research project. See disclaimer below.
 </div>
-
-<br><br><br>
 """, unsafe_allow_html=True)
 
 # ---- SIDEBAR ----
