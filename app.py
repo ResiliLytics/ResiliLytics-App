@@ -3,33 +3,61 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 
+import streamlit as st
+
+# Set page config
+st.set_page_config(layout="wide", page_title="ResiliLytics")
+
+# Override default Streamlit padding/margins + fix alignment
 st.markdown("""
 <style>
+/* Remove Streamlit's default left/right padding */
+.css-18e3th9 {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+.css-1d391kg {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+
+/* Optional: remove margins from the main block container */
+.block-container {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
+}
+
+/* Scrolling banner styling */
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
-
-.scrolling-banner 
-  background: #004d60;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+}
+.scrolling-banner {
+  width: 100%;
+  background: #003f50;
+  padding: 0.5rem 0;
   overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;
-  margin-bottom: 1rem;
-
-.scrolling-text 
+}
+.scrolling-text {
   display: inline-block;
-  color: #e5f9ff;
-  font-size: 0.95rem;
+  color: #ffffff;
+  font-size: 0.88rem;
   font-weight: 500;
   animation: scroll-left 18s linear infinite;
-
+}
+.scrolling-banner:hover .scrolling-text {
+  animation-play-state: paused;
+}
 </style>
 
+<!-- Scrolling banner -->
 <div class="scrolling-banner">
   <div class="scrolling-text">
-    🔎 Note: This tool is part of a non‑commercial academic research project. See disclaimer below.
+    🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
   </div>
 </div>
 """, unsafe_allow_html=True)
