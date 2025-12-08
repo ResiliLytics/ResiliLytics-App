@@ -51,7 +51,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- TABS ----
-tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "ℹ️ About", "📬 Contact"])
+tab1, tab2, tab3 = st.tabs([" Dashboard", " About", " Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
 with tab1:
@@ -119,7 +119,7 @@ with tab1:
 
 # --------------- TAB 2: About ---------------
 with tab2:
-    st.markdown("## ℹ️ About ResiliLytics")
+    st.markdown("## About ResiliLytics")
     st.markdown("ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.")
 
     with st.expander("Read full description"):
@@ -145,7 +145,7 @@ with tab2:
 
 # --------------- TAB 3: Contact ---------------
 with tab3:
-    st.markdown("## 📬 Contact Us")
+    st.markdown("## Contact Us")
     st.markdown("Have feedback or want to collaborate? Fill out the form below.")
     contact_form = """
     <form action="https://formspree.io/f/xrbnaeqd" method="POST">
