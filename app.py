@@ -4,10 +4,49 @@ import numpy as np
 import plotly.graph_objects as go
 
 st.markdown("""
-<div style='background: #002b36; padding: 0.5rem 1rem; border-radius: 6px; color: #91caff; font-size: 0.85rem; margin-bottom: 1rem;'>
-🔎 <strong>Note:</strong> This tool is part of a non-commercial academic research project. See disclaimer below.
+<style>
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background-color: #013440;  /* Deep teal background */
+  color: #f4f4f4;              /* Soft white text */
+  font-size: 0.88rem;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 0.4rem 1rem;
+  border-bottom: 2px solid #0ff;
+}
+
+.marquee-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 20s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-container:hover .marquee-text {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+</style>
+
+<div class="marquee-container">
+  <div class="marquee-text">
+    🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
+  </div>
 </div>
 """, unsafe_allow_html=True)
+
 # ---- SIDEBAR ----
 st.sidebar.title("📊 ResiliLytics")
 page = st.sidebar.radio("Navigate", ["About", "Dashboard", "Contact"])
