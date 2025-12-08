@@ -11,26 +11,27 @@ st.markdown("""
 }
 
 .scrolling-banner {
-  background: #002b36;
+  background: #004d60;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;
+  margin-bottom: 1rem;
 }
 
 .scrolling-text {
   display: inline-block;
-  color: #91caff;
-  font-size: 0.85rem;
-  font-weight: bold;
-  animation: scroll-left 15s linear infinite;
+  color: #e5f9ff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: scroll-left 18s linear infinite;
 }
 </style>
 
 <div class="scrolling-banner">
   <div class="scrolling-text">
-    🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
+    🔎 Note: This tool is part of a non‑commercial academic research project. See disclaimer below.
   </div>
 </div>
 """, unsafe_allow_html=True)
