@@ -3,21 +3,12 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 
-# Set page config
 st.set_page_config(layout="wide", page_title="ResiliLytics")
 
-# CSS and scrolling banner
+# Styling + banner
 st.markdown("""
 <style>
-/* Layout fix */
-.css-18e3th9, .css-1d391kg, .block-container {
-    padding-left: 0rem !important;
-    padding-right: 0rem !important;
-    margin-left: 0rem !important;
-    margin-right: 0rem !important;
-}
-
-/* Scrolling banner */
+/* Scrolling banner styling */
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
@@ -28,6 +19,7 @@ st.markdown("""
   padding: 0.5rem 0;
   overflow: hidden;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 .scrolling-text {
   display: inline-block;
@@ -40,7 +32,6 @@ st.markdown("""
   animation-play-state: paused;
 }
 </style>
-
 <div class="scrolling-banner">
   <div class="scrolling-text">
     🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
@@ -48,13 +39,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---- SIDEBAR ----
-st.sidebar.title("📊 ResiliLytics")
-page = st.sidebar.selectbox("Navigate", ["Dashboard", "About", "Contact"])
-
 # ---- HEADER ----
 st.markdown("""
-<div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 5rem;'>
+<div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 3rem;'>
     <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/d3dc6cd2011816b6fe359d1867b286f4e7b07fa4/Logo%204.png?raw=true' alt='ResiliLytics Logo' width='120' style='margin-right: 20px;'/>
     <div>
         <h1 style='color: #fdf6e3; font-size: 3.5rem; margin: 0;'>ResiliLytics Dashboard</h1>
@@ -63,21 +50,16 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---- PAGE: DASHBOARD ----
-if page == "Dashboard":
+# ---- TABS ----
+tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "ℹ️ About", "📬 Contact"])
+
+# --------------- TAB 1: Dashboard ---------------
+with tab1:
     st.markdown("### Upload Your Data")
     uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
-    st.markdown("""
-    <div style='color:#ccc; font-size:0.95rem;'>
-        Upload your .csv or .xlsx file with columns: Supplier, Country, Spend, Cost_Per_Unit, Historical_Costs<br>
-        <a href='/mnt/data/945104ef-ae7f-4f41-bb2e-7e2b1d287db3.xlsx' download style='color:#91caff;'>Download Sample Template</a>
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("---")
 
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
-
         total_spend = df['Spend'].sum()
         top_supplier_pct = df.groupby('Supplier')['Spend'].sum().max() / total_spend * 100
         num_countries = df['Country'].nunique()
@@ -136,29 +118,30 @@ if page == "Dashboard":
         st.dataframe(df.head())
 
     else:
-        st.markdown("### 📽️ Need Help?")
-        st.markdown("""If you're unsure how to use the dashboard, watch our quick <a href='https://www.youtube.com/watch?v=YOUR_VIDEO_ID' target='_blank' style='color:#91caff;'>3-minute tutorial</a>.""", unsafe_allow_html=True)
-        st.markdown("💬 [Frequently Asked Questions](https://yourfaqpage.com) — get quick answers to common issues.")
         st.image("https://github.com/ResiliLytics/ResiliLytics-assets/blob/b553fe3aa11e13bd72d77789970bc3bb3cc08147/Final%20Dashboard%20Sample.png?raw=true")
+        st.markdown("### 📊 How Metrics Are Calculated")
+        st.markdown("""
+        - **Resilience Score** = `100 - Supplier Concentration (%) - (Avg. Cost Volatility × 10)`
+        - **Supplier Concentration** = `% of spend on top supplier`
+        - **Geographic Exposure** = `Count of unique countries`
+        - **Cost Volatility** = `Standard deviation of historical costs (e.g. Jan;Feb;Mar)`
+        - **Supply Risk** = `High if top supplier > 50% or volatility > 0.5`
+        """)
 
-# ---- PAGE: ABOUT ----
-elif page == "About":
+# --------------- TAB 2: About ---------------
+with tab2:
     st.markdown("## ℹ️ About ResiliLytics")
-    st.markdown("""
-    ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
-    """)
-    
+    st.markdown("ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.")
+
     with st.expander("Read full description"):
         st.markdown("""
         Powered by data and guided by insight, ResiliLytics:
-
         - Analyzes supplier risk exposure  
         - Recommends mitigation strategies  
         - Translates supply chain complexity into clear, actionable plans  
 
         ### 🧠 What Makes It Unique?
         ResiliLytics brings together:
-
         - 📦 Supply chain analytics  
         - ⚠️ Risk classification  
         - 🤖 AI-assisted insights  
@@ -166,19 +149,15 @@ elif page == "About":
 
         ### 🧪 Original Contribution
         ResiliLytics introduces a novel approach to:
-
         - Supply chain visualization  
         - Dynamic diversification metrics  
         - End-to-end data-to-action transformation  
-
-        The platform supports ongoing research into improving SME supply-chain resilience through intelligent systems.
         """)
 
-# ---- PAGE: CONTACT ----
-elif page == "Contact":
+# --------------- TAB 3: Contact ---------------
+with tab3:
     st.markdown("## 📬 Contact Us")
     st.markdown("Have feedback or want to collaborate? Fill out the form below.")
-    
     contact_form = """
     <form action="https://formspree.io/f/xrbnaeqd" method="POST">
         <label>Your email:<br><input type="email" name="email" style="width: 100%; padding: 8px;" required></label><br><br>
@@ -189,7 +168,7 @@ elif page == "Contact":
     """
     st.markdown(contact_form, unsafe_allow_html=True)
 
-# ---- LEGAL NOTICE ----
+# ---- LEGAL DISCLAIMER ----
 st.markdown("### 📜 Legal Notice")
 st.markdown("---")
 st.markdown("""
@@ -197,9 +176,5 @@ st.markdown("""
     <strong>Disclaimer:</strong> This is a non-commercial, research-focused prototype developed solely for academic and public benefit purposes. It is part of a demonstration for showcasing technical contributions to the field of supply chain resilience and AI-driven risk analytics.
     <br><br>
     This application <strong>does not offer paid services</strong> and <strong>is not affiliated with any business entity</strong>. The developer is not engaged in commercial activity. Data uploaded is processed temporarily and not stored.
-    <br><br>
-     No income is derived from this tool.
 </div>
 """, unsafe_allow_html=True)
-
-
