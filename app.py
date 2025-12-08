@@ -19,7 +19,8 @@ page = st.sidebar.radio("Navigate", ["Dashboard", "About", "Contact"])
 st.markdown("""
     <div style='text-align: left; padding: 0.5rem 0 0rem 0;'>
         <img src='https://raw.githubusercontent.com/ResiliLytics/ResiliLytics-assets/main/Logo%203.png' alt='ResiliLytics Logo 3' width='360'>
-        <img src='https://raw.githubusercontent.com/ResiliLytics/ResiliLytics-assets/main/Logo%204.png' alt='ResiliLytics Logo 4' width='160'> h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>ResiliLytics Dashboard</h1>
+        <img src='https://raw.githubusercontent.com/ResiliLytics/ResiliLytics-assets/main/Logo%204.png' alt='ResiliLytics Logo 4' width='160'> 
+        <h1 style='color: #ffffff; margin-bottom: .2rem; margin-top: -0.2rem;'>ResiliLytics Dashboard</h1>
         <h3 style='color: #bbbbbb; font-weight:400; margin-top: -0.5rem;'>Sourcing Intelligence for Resilient Supply Chains</h3>
     </div>
 """, unsafe_allow_html=True)
