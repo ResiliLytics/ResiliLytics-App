@@ -158,33 +158,9 @@ if page == "Dashboard":
 st.markdown("## 📘 About ResiliLytics")
 st.markdown("""
 ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
+
+👉 [Read more →](About)
 """)
-
-with st.expander("Read full description"):
-    st.markdown("""
-    Powered by data and guided by insight, ResiliLytics:
-    
-    - Analyzes supplier risk exposure  
-    - Recommends mitigation strategies  
-    - Translates supply chain complexity into clear, actionable plans  
-
-    ### 🧠 What Makes It Unique?
-    ResiliLytics brings together:
-
-    - 📦 Supply chain analytics  
-    - ⚠️ Risk classification  
-    - 🤖 AI-assisted insights  
-    - 🎯 Decision-ready recommendations  
-
-    ### 🧪 Original Contribution
-    ResiliLytics introduces a novel approach to:
-
-    - Supply chain visualization  
-    - Dynamic diversification metrics  
-    - End-to-end data-to-action transformation  
-
-    The platform supports ongoing research into improving SME supply-chain resilience through intelligent systems.
-    """)
 # ---- PAGE: CONTACT ----
 elif page == "Contact":
     st.markdown("### 📬 Contact Us")
