@@ -72,7 +72,7 @@ st.markdown("""
     <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/d3dc6cd2011816b6fe359d1867b286f4e7b07fa4/Logo%204.png?raw=true' alt='ResiliLytics Logo' width='90' style='margin-right: 20px;'/>
     <div>
         <h1 style='color: #fdf6e3; font-size: 2.5rem; margin: 0;'>ResiliLytics Dashboard</h1>
-        <h3 style='color: #e0e0e0; font-weight: 400; margin-top: -0.15rem;'>Sourcing Intelligence for Resilient Supply Chains</h3>
+        <h3 style='color: #e0e0e0; font-weight: 400; margin-top: -0.50rem;'>Sourcing Intelligence for Resilient Supply Chains</h3>
     </div>
 </div>
 """, unsafe_allow_html=True)
