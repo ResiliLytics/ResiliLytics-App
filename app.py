@@ -4,10 +4,37 @@ import numpy as np
 import plotly.graph_objects as go
 
 st.markdown("""
-<div style='background: #002b36; padding: 0.5rem 1rem; border-radius: 6px; color: #91caff; font-size: 0.85rem; margin-bottom: 1rem;'>
-🔎 <strong>Note:</strong> This tool is part of a non-commercial academic research project. See disclaimer below.
+<style>
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.scrolling-banner {
+  background: #002b36;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.scrolling-text {
+  display: inline-block;
+  color: #91caff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  animation: scroll-left 15s linear infinite;
+}
+</style>
+
+<div class="scrolling-banner">
+  <div class="scrolling-text">
+    🔎 Note: This tool is part of a non-commercial academic research project. See disclaimer below.
+  </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 # ---- SIDEBAR ----
 st.sidebar.title("📊 ResiliLytics")
