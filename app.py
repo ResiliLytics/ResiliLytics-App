@@ -155,11 +155,13 @@ if page == "Dashboard":
         st.image("https://github.com/ResiliLytics/ResiliLytics-assets/blob/b553fe3aa11e13bd72d77789970bc3bb3cc08147/Final%20Dashboard%20Sample.png?raw=true")
 
 # ---- PAGE: ABOUT ----
+import streamlit as st
+
 st.markdown("## 📘 About ResiliLytics")
 st.markdown("""
 ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
 
-👉 [Read more →](About)
+[**Read more →**](About)
 """)
 # ---- PAGE: CONTACT ----
 elif page == "Contact":
