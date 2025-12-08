@@ -156,7 +156,7 @@ if page == "Dashboard":
 
 # ---- PAGE: ABOUT ----
 
-**ResiliLytics Dashboard**
+st.markdown("**ResiliLytics Dashboard**")
 Sourcing Intelligence for Resilient Supply Chains
 ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.
 
