@@ -171,14 +171,14 @@ ResiliLytics brings together:
 * Risk classification
 * AI-assisted insights
 * Decision-ready recommendations
-All in one simple, accessible tool created for real-world SME challenges.
+All in one simple, accessible tool, created for real-world SME challenges.
 
 **Original Contribution**
 ResiliLytics introduces a novel approach to:
 
 Supply chain visualization.
 Dynamic diversification metrics.
-End-to-end data-to-action transformation — not previously available in one open-access interface.
+End-to-end data-to-action transformation (not previously available in one open-access interface).
 The platform is developed in support of ongoing academic and professional research on improving SME supply-chain resilience through intelligent systems.
 # ---- PAGE: CONTACT ----
 elif page == "Contact":
