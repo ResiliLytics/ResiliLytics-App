@@ -51,7 +51,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- TABS ----
-tab1, tab2, tab3 = st.tabs([" Dashboard", "📖 Help & FAQ", " Contact"])
+tab1, tab2, tab3 = st.tabs([" Dashboard", " Help & FAQ", " Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
 with tab1:
@@ -65,14 +65,14 @@ with tab1:
         - Recommends mitigation strategies  
         - Translates supply chain complexity into clear, actionable plans  
 
-        ### 🧠 What Makes It Unique?
+        ### What Makes It Unique?
         ResiliLytics brings together:
-        - 📦 Supply chain analytics  
-        - ⚠️ Risk classification  
-        - 🤖 AI-assisted insights  
-        - 🎯 Decision-ready recommendations  
+        -  Supply chain analytics  
+        -  Risk classification  
+        -  AI-assisted insights  
+        -  Decision-ready recommendations  
 
-        ### 🧪 Original Contribution
+        ### Original Contribution
         ResiliLytics introduces a novel approach to:
         - Supply chain visualization  
         - Dynamic diversification metrics  
