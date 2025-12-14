@@ -152,7 +152,42 @@ with tab2:
     - [📥 Download the Guide (PDF)](https://yourwebsite.com/resililytics-guide.pdf)
     - Or open the [📘 Online Manual](https://yourwebsite.com/help-doc)
     """)
+st.markdown("### 🛠️ How It Works")
+col1, col2 = st.columns(2)
 
+with col1:
+    st.markdown("""
+    <div style="background:#f0f2f6;padding:1rem;border-radius:10px">
+    <h4>📤 Upload Your File</h4>
+    Upload your CSV or Excel with supplier data.
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div style="background:#f0f2f6;padding:1rem;border-radius:10px">
+    <h4>📈 Analyze</h4>
+    See your resilience score, risks, and supplier exposure.
+    </div>
+    """, unsafe_allow_html=True)
+
+col3, col4 = st.columns(2)
+
+with col3:
+    st.markdown("""
+    <div style="background:#f0f2f6;padding:1rem;border-radius:10px">
+    <h4>💡 Get Recommendations</h4>
+    Dynamic AI-style suggestions for resilience.
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div style="background:#f0f2f6;padding:1rem;border-radius:10px">
+    <h4>📄 Export or Explore</h4>
+    Download reports or try different input scenarios.
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("### ❓ Frequently Asked Questions")
 
     with st.expander("What kind of data should I upload?"):
