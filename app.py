@@ -51,7 +51,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- TABS ----
-tab1, tab2, tab3 = st.tabs([" Dashboard", " About", " Contact"])
+tab1, tab2, tab3 = st.tabs([" Dashboard", "📖 Help & FAQ", " Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
 with tab1:
