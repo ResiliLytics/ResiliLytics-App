@@ -136,65 +136,54 @@ with tab1:
             <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
             <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
             """, unsafe_allow_html=True)
-# ---- Additional Analytics Section ----
-st.markdown("### 📊 Additional Insights")
+# ---------- Risk Insights ----------
+st.markdown("### 📊 Risk Insights")
+risk_data = pd.DataFrame({
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "Alerts": [4, 6, 8, 11, 13, 14]
+})
+fig_risk = go.Figure(data=[go.Bar(
+    x=risk_data["Month"], 
+    y=risk_data["Alerts"], 
+    marker_color='#228be6'
+)])
+fig_risk.update_layout(height=300, margin=dict(l=10, r=10, t=30, b=10), title="Monthly Risk Alerts (Demo)")
+st.plotly_chart(fig_risk, use_container_width=True)
 
-# Risk Insights (Placeholder Demo Data)
-with st.expander("📉 Risk Insights Over Time"):
-    st.markdown("This demo chart shows example monthly disruptions or alerts (customize per use case).")
-    risk_data = pd.DataFrame({
-        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        "Alerts": [4, 6, 8, 11, 13, 14]
-    })
-    fig_risk = go.Figure(data=[go.Bar(
-        x=risk_data["Month"], 
-        y=risk_data["Alerts"], 
-        marker_color='#228be6'
-    )])
-    fig_risk.update_layout(height=300, margin=dict(l=10, r=10, t=30, b=10), title="Risk Alerts (Example)")
-    st.plotly_chart(fig_risk, use_container_width=True)
+# ---------- Supplier Diversification ----------
+st.markdown("### 🌍 Supplier Diversification")
+region_map = {
+    "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
+    "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
+    "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
+}
+df["Region"] = df["Country"].map(region_map).fillna("Other")
+region_breakdown = df.groupby("Region")["Spend"].sum()
+fig_donut = go.Figure(data=[go.Pie(
+    labels=region_breakdown.index,
+    values=region_breakdown.values,
+    hole=0.5,
+    textinfo='label+percent'
+)])
+fig_donut.update_layout(height=300, title="Supplier Spend by Region")
+st.plotly_chart(fig_donut, use_container_width=True)
 
-# Supplier Diversification Chart
-with st.expander("🌎 Supplier Diversification by Region"):
-    st.markdown("Shows percent of supplier spend by region (calculated from your data).")
-    region_map = {
-        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
-        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
-        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
-    }
+# ---------- Mitigation Plan ----------
+st.markdown("### 🛡️ Mitigation Plan")
+st.markdown("""
+<div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
+    <p><strong>🎯 Objective:</strong> Reduce single-source dependency</p>
+    <p><strong>📅 Timeline:</strong> 3 – 8 months</p>
+    <p><strong>👤 Owner:</strong> Supply Chain Manager</p>
+    <p><strong>📊 KPIs:</strong> Supplier mix, lead time, risk reduction</p>
+</div>
+""", unsafe_allow_html=True)
 
-    df["Region"] = df["Country"].map(region_map).fillna("Other")
-    region_breakdown = df.groupby("Region")["Spend"].sum()
-    fig_donut = go.Figure(data=[go.Pie(
-        labels=region_breakdown.index,
-        values=region_breakdown.values,
-        hole=0.5,
-        textinfo='label+percent'
-    )])
-    fig_donut.update_layout(height=300, title="Supplier Spend by Region")
-    st.plotly_chart(fig_donut, use_container_width=True)
+# ---------- Upload & Data Table ----------
+st.markdown("### 📁 Upload Your Data")
+st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
 
-# Mitigation Plan Card
-with st.expander("🛡️ Mitigation Plan (Sample)"):
-    st.markdown("""
-    <div style="background-color:#1e1e1e; padding:1.5rem; border-radius:12px; color:white; border:1px solid #444;">
-        <h4>🎯 Objective:</h4>
-        <p>Reduce overdependence on single-source suppliers.</p>
-        <h4>📅 Timeline:</h4>
-        <p>3 – 8 months</p>
-        <h4>👤 Owner:</h4>
-        <p>Supply Chain Manager</p>
-        <h4>📊 KPIs:</h4>
-        <ul>
-            <li>Diversity index of suppliers</li>
-            <li>Lead time stability</li>
-            <li>Cost variation reduction</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Show original table collapsible + downloadable
-st.markdown("---")
+# Collapsible Table
 with st.expander("📊 View Raw Supplier Data Table"):
     st.dataframe(df)
     st.download_button("📥 Download Full Data", data=df.to_csv(index=False), file_name="resililytics_output.csv", mime="text/csv")
@@ -267,7 +256,6 @@ with tab2:
     st.markdown("---")
     st.markdown("Still have questions? 👉 [**Contact Us Here**](https://resililytics-app.streamlit.app/#contact)")
 
-  
 # --------------- TAB 3: Contact ---------------
 with tab3:
     st.markdown("## Contact Us")
