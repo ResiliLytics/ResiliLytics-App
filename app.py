@@ -55,6 +55,7 @@ tab1, tab2, tab3 = st.tabs([" Dashboard", " Help & FAQ", " Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
 # --------------- TAB 1: Dashboard ---------------
+# --------------- TAB 1: Dashboard ---------------
 with tab1:
 
     # ---- ABOUT (SHORT) ----
@@ -266,6 +267,7 @@ with tab1:
             file_name="resililytics_output.csv",
             mime="text/csv",
         )
+
 # --------------- TAB 2: About ---------------
 with tab2:
     st.markdown("## 📖 Help & FAQ")
