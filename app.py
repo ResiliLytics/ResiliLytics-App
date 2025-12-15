@@ -169,7 +169,7 @@ with col2:
         "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
         "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
     }
-    df["Region"] = df["Country"].map(region_map).fillna("Other")
+      df["Region"] = df["Country"].map(region_map).fillna("Other")
     region_breakdown = df.groupby("Region")["Spend"].sum()
     fig_donut = go.Figure(data=[go.Pie(
         labels=region_breakdown.index,
