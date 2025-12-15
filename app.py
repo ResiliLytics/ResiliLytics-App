@@ -78,9 +78,16 @@ with tab1:
         - Dynamic diversification metrics  
         - End-to-end data-to-action transformation  
         """)
-    st.markdown("### Upload Your Data")
-    uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
-    
+st.markdown("### Upload Your Data")
+st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
+
+# 📥 Sample template download link
+st.markdown("""
+    - [📥 Download Sample Template (Excel)](https://resililytics-app.streamlit.app/sample_supplier_template.xlsx)
+""", unsafe_allow_html=True)
+
+uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
+
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
         total_spend = df['Spend'].sum()
@@ -195,8 +202,15 @@ with col3:
     """, unsafe_allow_html=True)
 
 # ---- Upload Section Heading ----
-st.markdown("### 📁 Upload Your Data")
+st.markdown("### Upload Your Data")
 st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
+
+# 📥 Sample template download link
+st.markdown("""
+    - [📥 Download Sample Template (Excel)](https://resililytics-app.streamlit.app/sample_supplier_template.xlsx)
+""", unsafe_allow_html=True)
+
+uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
 
 # ---- Collapsible Raw Data Table ----
 with st.expander("📊 View Raw Supplier Data Table"):
