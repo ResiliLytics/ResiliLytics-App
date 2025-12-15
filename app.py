@@ -174,7 +174,7 @@ with col2:
     }
     if uploaded_file:
 
-    # df is defined here
+      # df is defined here
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
     # --- Region Mapping ---
