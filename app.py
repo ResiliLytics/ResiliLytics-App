@@ -105,21 +105,34 @@ with tab1:
         col1, col2, col3 = st.columns([1.1, 1, 1])
         with col1:
             st.markdown("#### Resilience Score")
-            fig = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=resilience_score,
-                gauge={
-                    "axis": {"range": [0, 100]},
-                    "bar": {"color": "#238823"},
-                    "steps": [
-                        {"range": [0, 50], "color": "#e74c3c"},
-                        {"range": [50, 75], "color": "#f6c542"},
-                        {"range": [75, 100], "color": "#43a047"},
-                    ],
-                },
-            ))
-            fig.update_layout(height=220, margin=dict(l=0, r=0, t=30, b=0))
-            st.plotly_chart(fig, use_container_width=True)
+           fig = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=resilience_score,
+    number={'font': {'size': 48, 'color': 'white'}},
+    gauge={
+        "axis": {"range": [0, 100], "tickwidth": 1, "tickcolor": "white"},
+        "bar": {"color": "#00cc44"},
+        "bgcolor": "white",
+        "steps": [
+            {"range": [0, 50], "color": "#e74c3c"},
+            {"range": [50, 75], "color": "#f6c542"},
+            {"range": [75, 100], "color": "#43a047"},
+        ],
+        "threshold": {
+            "line": {"color": "white", "width": 4},
+            "thickness": 0.75,
+            "value": resilience_score
+        }
+    }
+))
+fig.update_layout(
+    height=250,
+    margin=dict(l=10, r=10, t=10, b=10),
+    paper_bgcolor="#0e1117",
+    font=dict(color="white", size=16)
+)
+st.plotly_chart(fig, use_container_width=True)
+
         with col2:
             st.markdown("#### Key Metrics")
             c1, c2 = st.columns(2)
