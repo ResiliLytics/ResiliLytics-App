@@ -200,7 +200,7 @@ if uploaded_file:
     region_breakdown = df.groupby("Region")["Spend"].sum()
 df["Region"] = df["Country"].map(region_map).fillna("Other")
 
-    region_breakdown = df.groupby("Region")["Spend"].sum()
+  region_breakdown = df.groupby("Region")["Spend"].sum()
 
 
 with col3:
