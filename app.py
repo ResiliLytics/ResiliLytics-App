@@ -88,8 +88,7 @@ with tab1:
     uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
     type=['csv', 'xlsx'],
-    key="main_data_upload"
-)
+    key="main_data_upload")
     
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
@@ -206,8 +205,7 @@ Upload your **.csv** or **.xlsx** file and review your resilience profile instan
 uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
     type=['csv', 'xlsx'],
-    key="main_data_upload"
-)
+    key="main_data_upload")
 
 # ---- Collapsible Raw Data Table ----
 with st.expander("📊 View Raw Supplier Data Table"):
