@@ -93,6 +93,11 @@ with tab1:
     """, unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
+    uploaded_file = st.file_uploader(
+    "Choose a .csv or .xlsx file",
+    type=['csv', 'xlsx'],
+    key="dashboard_uploader"
+)
 
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
@@ -211,6 +216,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
+uploaded_file = st.file_uploader(
+    "Choose a .csv or .xlsx file",
+    type=['csv', 'xlsx'],
+    key="dashboard_uploader"
+)
 
 # ---- Collapsible Raw Data Table ----
 with st.expander("📊 View Raw Supplier Data Table"):
