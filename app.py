@@ -55,37 +55,53 @@ tab1, tab2, tab3 = st.tabs([" Dashboard", " Help & FAQ", " Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
 with tab1:
+    # ---- HEADER BLOCK ----
+    st.markdown("""
+    <div style='display: flex; align-items: center; background-color: #0e1117; padding: 1rem; border-radius: 10px; margin-bottom: 2rem;'>
+        <img src='https://github.com/ResiliLytics/ResiliLytics-assets/blob/d3dc6cd2011816b6fe359d1867b286f4e7b07fa4/Logo%204.png?raw=true' alt='ResiliLytics Logo' width='110' style='margin-right: 20px;'/>
+        <div>
+            <h1 style='color: #fdf6e3; font-size: 2.8rem; margin: 0;'>ResiliLytics Dashboard</h1>
+            <h4 style='color: #e0e0e0; font-weight: 400;'>Sourcing Intelligence for Resilient Supply Chains</h4>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---- DESCRIPTION ----
     st.markdown("## About ResiliLytics")
-    st.markdown("ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.")
+    st.markdown("ResiliLytics is a free next-gen platform to help SMEs monitor & improve supply chain resilience with intelligent risk-to-action insights.")
 
     with st.expander("Read full description"):
         st.markdown("""
-        Powered by data and guided by insight, **ResiliLytics**:
-        - Analyzes supplier risk exposure  
-        - Recommends mitigation strategies  
-        - Translates supply chain complexity into clear, actionable plans  
+        **ResiliLytics**:
+        - Analyzes supplier risk exposure
+        - Recommends mitigation strategies
+        - Translates supply chain complexity into clear plans
 
-        ### What Makes It Unique?
-        **ResiliLytics** brings together:
-        -  Supply chain analytics  
-        -  Risk classification  
-        -  AI-assisted insights  
-        -  Decision-ready recommendations  
-
-        ### Original Contribution
-        **ResiliLytics** introduces a novel approach to:
-        - Supply chain visualization  
-        - Dynamic diversification metrics  
-        - End-to-end data-to-action transformation  
+        **What Makes It Unique?**
+        - Supply chain analytics
+        - Risk classification
+        - AI-assisted insights
+        - Decision-ready recommendations
         """)
+
+    # ---- DATA UPLOAD ----
     st.markdown("### Upload Your Data")
+    st.markdown("Upload your **.csv** or **.xlsx** file and instantly generate your risk profile.")
+
+    st.markdown("""
+        - [📥 Download Sample Template (Excel)](https://github.com/ResiliLytics/ResiliLytics-App/raw/main/sample%20supplier%20template.xlsx.csv)
+    """, unsafe_allow_html=True)
+
     uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
     type=['csv', 'xlsx'],
     key="main_data_upload"
 )
+
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
+
+        # --- BASIC COMPUTATIONS ---
         total_spend = df['Spend'].sum()
         top_supplier_pct = df.groupby('Supplier')['Spend'].sum().max() / total_spend * 100
         num_countries = df['Country'].nunique()
@@ -103,8 +119,29 @@ with tab1:
         resilience_score = max(0, 100 - top_supplier_pct - (avg_volatility * 10))
         supply_risk = "High" if top_supplier_pct > 50 or avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
         volatility_level = "High" if avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
-        risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
+        risk_color = "#e74c3c" if supply_risk == "High" else "#f6c542" if supply_risk == "Moderate" else "#43a047"
 
+        # --- ALERT CHART LOGIC (Bar) ---
+        if 'Date' in df.columns:
+            df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+            df['Month'] = df['Date'].dt.strftime('%b')
+            monthly_alerts = df['Month'].value_counts().reindex(["Jan", "Feb", "Mar", "Apr", "May", "Jun"], fill_value=0)
+        else:
+            df['Alert'] = (df['Volatility'] > 0.5) | (df.groupby('Supplier')['Spend'].transform('sum') / total_spend > 0.5)
+            df['Month'] = np.random.choice(["Jan", "Feb", "Mar", "Apr", "May", "Jun"], size=len(df))
+            monthly_alerts = df[df['Alert'] == True]['Month'].value_counts().reindex(["Jan", "Feb", "Mar", "Apr", "May", "Jun"], fill_value=0)
+
+        # --- REGION LOGIC ---
+        region_map = {
+            "China": "Asia", "India": "Asia", "Vietnam": "Asia", "Japan": "Asia",
+            "USA": "Americas", "Brazil": "Americas", "Mexico": "Americas",
+            "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
+        }
+        df['Region'] = df['Country'].map(region_map).fillna("Other")
+        region_counts = df.groupby('Region')['Spend'].sum()
+        region_colors = {'Asia': '#43a047', 'Europe': '#f6c542', 'Americas': '#228be6', 'Other': '#999999'}
+
+        # --- VISUAL BLOCKS ---
         col1, col2, col3 = st.columns([1.1, 1, 1])
         with col1:
             st.markdown("#### Resilience Score")
@@ -113,35 +150,60 @@ with tab1:
                 value=resilience_score,
                 gauge={
                     "axis": {"range": [0, 100]},
-                    "bar": {"color": "#238823"},
+                    "bar": {"color": "#00cc44"},
                     "steps": [
                         {"range": [0, 50], "color": "#e74c3c"},
                         {"range": [50, 75], "color": "#f6c542"},
                         {"range": [75, 100], "color": "#43a047"},
                     ],
-                },
+                }
             ))
-            fig.update_layout(height=220, margin=dict(l=0, r=0, t=30, b=0))
+            fig.update_layout(height=250, paper_bgcolor="#0e1117", font=dict(color="white"))
             st.plotly_chart(fig, use_container_width=True)
 
         with col2:
             st.markdown("#### Key Metrics")
             c1, c2 = st.columns(2)
-            c1.markdown(f"<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>{top_supplier_pct:.1f}%</span></div>", unsafe_allow_html=True)
-            c2.markdown(f"<div style='background:#228be6; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>{num_countries} Countries</span></div>", unsafe_allow_html=True)
-            c1.markdown(f"<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>{volatility_level}</span></div>", unsafe_allow_html=True)
-            c2.markdown(f"<div style='background:{risk_color}; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>{supply_risk}</span></div>", unsafe_allow_html=True)
+            c1.markdown(f"🧩 **Supplier Concentration:** {top_supplier_pct:.1f}%")
+            c2.markdown(f"🌍 **Countries:** {num_countries}")
+            c1.markdown(f"📉 **Cost Volatility:** {volatility_level}")
+            c2.markdown(f"⚠️ **Supply Risk:** `{supply_risk}`")
 
         with col3:
             st.markdown("#### Recommendations")
-            st.markdown("""
-            <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia</div>
-            <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
-            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
-            """, unsafe_allow_html=True)
+            st.markdown("- ✅ Evaluate alternate suppliers in East Asia")
+            st.markdown("- 📦 Increase buffer inventory")
+            st.download_button("📄 Download Project Brief", "Sample project text here.", file_name="supplier_plan.txt")
 
-        st.markdown("---")
-        st.dataframe(df.head())
+        # --- Insights ---
+        col4, col5 = st.columns(2)
+        with col4:
+            st.markdown("#### 📊 Risk Insights (Monthly Alerts)")
+            st.bar_chart(monthly_alerts)
+
+        with col5:
+            st.markdown("#### 🧭 Supplier Diversification")
+            st.plotly_chart(px.pie(
+                names=region_counts.index,
+                values=region_counts.values,
+                color=region_counts.index,
+                color_discrete_map=region_colors,
+                hole=0.4
+            ).update_layout(showlegend=True), use_container_width=True)
+
+        # --- Mitigation Plan ---
+        st.markdown("### 🛠️ Mitigation Plan")
+        st.markdown("""
+        <div style='background:#f5f5dc;padding:1rem;border-radius:10px;'>
+        <b>Objective:</b> Reduce single-source reliance<br>
+        <b>Timeline:</b> 3–8 months<br>
+        <b>Owner:</b> Supply Chain Manager<br>
+        <b>KPIs:</b> Supplier mix, lead time
+        </div>
+        """, unsafe_allow_html=True)
+
+        # --- Export Data Button ---
+        st.download_button("📤 Download Full Report", df.to_csv(index=False), file_name="resililytics_output.csv")
 
 # --------------- TAB 2: About ---------------
 with tab2:
