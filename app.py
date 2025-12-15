@@ -80,7 +80,7 @@ with tab1:
         """)
     st.markdown("### Upload Your Data")
     uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
-
+    
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
         total_spend = df['Spend'].sum()
