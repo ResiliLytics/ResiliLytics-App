@@ -85,7 +85,11 @@ with tab1:
     [📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/blob/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
     """, unsafe_allow_html=True)
 
-    uploaded_file = st.file_uploader("Choose a file", type=['csv', 'xlsx'])
+    uploaded_file = st.file_uploader(
+    "Choose a .csv or .xlsx file",
+    type=['csv', 'xlsx'],
+    key="main_data_upload"
+)
     
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
@@ -169,7 +173,7 @@ with col2:
         "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
         "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
     }
-  df["Region"] = df["Country"].map(region_map).fillna("Other")
+    df["Region"] = df["Country"].map(region_map).fillna("Other")
     region_breakdown = df.groupby("Region")["Spend"].sum()
     fig_donut = go.Figure(data=[go.Pie(
         labels=region_breakdown.index,
@@ -199,7 +203,11 @@ Upload your **.csv** or **.xlsx** file and review your resilience profile instan
 [📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/blob/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
 """, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Choose a file", type=['csv', 'xlsx'])
+uploaded_file = st.file_uploader(
+    "Choose a .csv or .xlsx file",
+    type=['csv', 'xlsx'],
+    key="main_data_upload"
+)
 
 # ---- Collapsible Raw Data Table ----
 with st.expander("📊 View Raw Supplier Data Table"):
