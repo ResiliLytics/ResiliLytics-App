@@ -172,7 +172,7 @@ with col2:
         "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
         "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
     }
-  if uploaded_file:
+    if uploaded_file:
 
     # df is defined here
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
