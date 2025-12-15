@@ -78,15 +78,16 @@ with tab1:
         - Dynamic diversification metrics  
         - End-to-end data-to-action transformation  
         """)
-st.markdown("### Upload Your Data")
-st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
 
-# 📥 Sample template download link
-st.markdown("""
+    st.markdown("### Upload Your Data")
+    st.markdown("Upload your `.csv` or `.xlsx` file and review your resilience profile instantly.")
+    
+    # 📥 Sample template download link (update the URL below to the actual file host path)
+    st.markdown("""
     - [📥 Download Sample Template (Excel)](https://resililytics-app.streamlit.app/sample_supplier_template.xlsx)
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
+    uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xlsx'])
 
     if uploaded_file:
         df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
@@ -110,35 +111,37 @@ uploaded_file = st.file_uploader("Choose a .csv or .xlsx file", type=['csv', 'xl
         risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
 
         col1, col2, col3 = st.columns([1.1, 1, 1])
-        fig = go.Figure(go.Indicator(
-    mode="gauge+number",
-    value=resilience_score,
-    number={'font': {'size': 48, 'color': 'white'}},
-    gauge={
-        "axis": {"range": [0, 100], "tickwidth": 1, "tickcolor": "white"},
-        "bar": {"color": "#00cc44"},
-        "bgcolor": "white",
-        "steps": [
-            {"range": [0, 50], "color": "#e74c3c"},
-            {"range": [50, 75], "color": "#f6c542"},
-            {"range": [75, 100], "color": "#43a047"},
-        ],
-        "threshold": {
-            "line": {"color": "white", "width": 4},
-            "thickness": 0.75,
-            "value": resilience_score
-        }
-    }
-))
-fig.update_layout(
-    height=250,
-    margin=dict(l=10, r=10, t=10, b=10),
-    paper_bgcolor="#0e1117",
-    font=dict(color="white", size=16)
-)
-st.plotly_chart(fig, use_container_width=True)
+        with col1:
+            st.markdown("#### Resilience Score")
+            fig = go.Figure(go.Indicator(
+                mode="gauge+number",
+                value=resilience_score,
+                number={'font': {'size': 48, 'color': 'white'}},
+                gauge={
+                    "axis": {"range": [0, 100], "tickwidth": 1, "tickcolor": "white"},
+                    "bar": {"color": "#00cc44"},
+                    "bgcolor": "white",
+                    "steps": [
+                        {"range": [0, 50], "color": "#e74c3c"},
+                        {"range": [50, 75], "color": "#f6c542"},
+                        {"range": [75, 100], "color": "#43a047"},
+                    ],
+                    "threshold": {
+                        "line": {"color": "white", "width": 4},
+                        "thickness": 0.75,
+                        "value": resilience_score
+                    }
+                }
+            ))
+            fig.update_layout(
+                height=250,
+                margin=dict(l=10, r=10, t=10, b=10),
+                paper_bgcolor="#0e1117",
+                font=dict(color="white", size=16)
+            )
+            st.plotly_chart(fig, use_container_width=True)
 
-      with col2:
+        with col2:
             st.markdown("#### Key Metrics")
             c1, c2 = st.columns(2)
             c1.markdown(f"<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>{top_supplier_pct:.1f}%</span></div>", unsafe_allow_html=True)
@@ -146,13 +149,27 @@ st.plotly_chart(fig, use_container_width=True)
             c1.markdown(f"<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>{volatility_level}</span></div>", unsafe_allow_html=True)
             c2.markdown(f"<div style='background:{risk_color}; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>{supply_risk}</span></div>", unsafe_allow_html=True)
 
-      with col3:
+        with col3:
             st.markdown("#### Recommendations")
             st.markdown("""
             <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia</div>
             <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
             <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
             """, unsafe_allow_html=True)
+
+        st.markdown("---")
+
+        with st.expander("📊 View Raw Supplier Data Table"):
+            st.dataframe(df)
+
+        # Optional download of uploaded/processed file
+        st.download_button(
+            "📥 Download Full Data",
+            data=df.to_csv(index=False),
+            file_name="resililytics_output.csv",
+            mime="text/csv"
+        )
+
 # ---- Second Row: Risk Insights, Supplier Diversification, Mitigation Plan ----
 st.markdown("### 📊 Risk Insights | 🌍 Supplier Diversification | 🛡️ Mitigation Plan")
 
