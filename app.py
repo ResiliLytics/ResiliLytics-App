@@ -205,7 +205,7 @@ Upload your **.csv** or **.xlsx** file and review your resilience profile instan
 uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
     type=['csv', 'xlsx'],
-    key="main_data_upload")
+    key="secondary_upload"  # ✅ Different key)
 
 # ---- Collapsible Raw Data Table ----
 with st.expander("📊 View Raw Supplier Data Table"):
