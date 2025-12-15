@@ -137,8 +137,63 @@ with tab1:
             <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
             """, unsafe_allow_html=True)
 
-        st.markdown("---")
-        st.dataframe(df.head())
+        # ---- Second Row: Risk Insights, Supplier Diversification, Mitigation Plan ----
+st.markdown("### 📊 Risk Insights | 🌍 Supplier Diversification | 🛡️ Mitigation Plan")
+
+col1, col2, col3 = st.columns([1, 1, 1])
+
+with col1:
+    st.markdown("##### 📊 Monthly Risk Alerts (Demo)")
+    risk_data = pd.DataFrame({
+        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "Alerts": [4, 6, 8, 11, 13, 14]
+    })
+    fig_risk = go.Figure(data=[go.Bar(
+        x=risk_data["Month"], 
+        y=risk_data["Alerts"], 
+        marker_color='#228be6'
+    )])
+    fig_risk.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
+    st.plotly_chart(fig_risk, use_container_width=True)
+
+with col2:
+    st.markdown("##### 🌍 Supplier Spend by Region")
+    region_map = {
+        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
+        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
+        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
+    }
+    df["Region"] = df["Country"].map(region_map).fillna("Other")
+    region_breakdown = df.groupby("Region")["Spend"].sum()
+    fig_donut = go.Figure(data=[go.Pie(
+        labels=region_breakdown.index,
+        values=region_breakdown.values,
+        hole=0.5,
+        textinfo='label+percent'
+    )])
+    fig_donut.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
+    st.plotly_chart(fig_donut, use_container_width=True)
+
+with col3:
+    st.markdown("##### 🛡️ Mitigation Plan")
+    st.markdown("""
+    <div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
+        <p><strong>🎯 Objective:</strong> Reduce single-source dependency</p>
+        <p><strong>📅 Timeline:</strong> 3 – 8 months</p>
+        <p><strong>👤 Owner:</strong> Supply Chain Manager</p>
+        <p><strong>📊 KPIs:</strong> Supplier mix, lead time, risk reduction</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ---- Upload Section Heading ----
+st.markdown("### 📁 Upload Your Data")
+st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
+
+# ---- Collapsible Raw Data Table ----
+with st.expander("📊 View Raw Supplier Data Table"):
+    st.dataframe(df)
+    st.download_button("📥 Download Full Data", data=df.to_csv(index=False), file_name="resililytics_output.csv", mime="text/csv")
+
 
 # --------------- TAB 2: About ---------------
 with tab2:
