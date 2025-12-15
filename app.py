@@ -103,7 +103,7 @@ with tab1:
         risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
 
         col1, col2, col3 = st.columns([1.1, 1, 1])
-      fig = go.Figure(go.Indicator(
+        fig = go.Figure(go.Indicator(
     mode="gauge+number",
     value=resilience_score,
     number={'font': {'size': 48, 'color': 'white'}},
