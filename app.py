@@ -53,7 +53,7 @@ st.markdown("""
 tab1, tab2, tab3 = st.tabs(["Dashboard", "Help & FAQ", "Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
- if uploaded_file:
+if uploaded_file:
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
     # --- Clean & Compute ---
