@@ -53,200 +53,139 @@ st.markdown("""
 tab1, tab2, tab3 = st.tabs(["Dashboard", "Help & FAQ", "Contact"])
 
 # --------------- TAB 1: Dashboard ---------------
-with tab1:
-    st.markdown("## About ResiliLytics")
-    st.markdown("ResiliLytics is a free next-generation platform designed to help Small and Medium Enterprises (SMEs) monitor and improve supply chain resilience using intelligent risk-to-action insights.")
+# -- Upload section already handled earlier --
 
-    with st.expander("Read full description"):
-        st.markdown("""
-        Powered by data and guided by insight, **ResiliLytics**:
-        - Analyzes supplier risk exposure  
-        - Recommends mitigation strategies  
-        - Translates supply chain complexity into clear, actionable plans  
-
-        ### What Makes It Unique?
-        **ResiliLytics** brings together:
-        -  Supply chain analytics  
-        -  Risk classification  
-        -  AI-assisted insights  
-        -  Decision-ready recommendations  
-
-        ### Original Contribution
-        **ResiliLytics** introduces a novel approach to:
-        - Supply chain visualization  
-        - Dynamic diversification metrics  
-        - End-to-end data-to-action transformation  
-        """)
-    st.markdown("### 📂 Upload Your Data")
-    st.markdown("""
-    Upload your **.csv** or **.xlsx** file and review your resilience profile instantly.
-
-    [📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/raw/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
-
-    uploaded_file = st.file_uploader(
-    "Choose a .csv or .xlsx file",
-    type=['csv', 'xlsx'],
-    key="main_data_upload")
-    
-    if uploaded_file:
-        df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
-        total_spend = df['Spend'].sum()
-        top_supplier_pct = df.groupby('Supplier')['Spend'].sum().max() / total_spend * 100
-        num_countries = df['Country'].nunique()
-
-        def compute_volatility(row):
-            try:
-                prices = list(map(float, str(row['Historical_Costs']).split(';')))
-                return np.std(prices)
-            except:
-                return np.nan
-
-        df['Volatility'] = df.apply(compute_volatility, axis=1)
-        avg_volatility = df['Volatility'].mean()
-
-        resilience_score = max(0, 100 - top_supplier_pct - (avg_volatility * 10))
-        supply_risk = "High" if top_supplier_pct > 50 or avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
-        volatility_level = "High" if avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
-        risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
-
-        col1, col2, col3 = st.columns([1.1, 1, 1])
-        with col1:
-            st.markdown("#### Resilience Score")
-            fig = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=resilience_score,
-                gauge={
-                    "axis": {"range": [0, 100]},
-                    "bar": {"color": "#238823"},
-                    "steps": [
-                        {"range": [0, 50], "color": "#e74c3c"},
-                        {"range": [50, 75], "color": "#f6c542"},
-                        {"range": [75, 100], "color": "#43a047"},
-                    ],
-                },
-            ))
-            fig.update_layout(height=220, margin=dict(l=0, r=0, t=30, b=0))
-            st.plotly_chart(fig, use_container_width=True)
-
-        with col2:
-            st.markdown("#### Key Metrics")
-            c1, c2 = st.columns(2)
-            c1.markdown(f"<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>{top_supplier_pct:.1f}%</span></div>", unsafe_allow_html=True)
-            c2.markdown(f"<div style='background:#228be6; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>{num_countries} Countries</span></div>", unsafe_allow_html=True)
-            c1.markdown(f"<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>{volatility_level}</span></div>", unsafe_allow_html=True)
-            c2.markdown(f"<div style='background:{risk_color}; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>{supply_risk}</span></div>", unsafe_allow_html=True)
-
-        with col3:
-            st.markdown("#### Recommendations")
-            st.markdown("""
-            <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'> Evaluate alternate suppliers in East Asia</div>
-            <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'> Increase buffer inventory for key items</div>
-            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'> Download Project Brief: Supplier Diversification</div>
-            """, unsafe_allow_html=True)
-
-        # ---- Second Row: Risk Insights, Supplier Diversification, Mitigation Plan ----
-st.markdown("### 📊 Risk Insights | 🌍 Supplier Diversification | 🛡️ Mitigation Plan")
-
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col1:
-   st.markdown("##### 📊 Risk Insights")
-if "Date" in df.columns:
-    df['Month'] = pd.to_datetime(df['Date']).dt.strftime('%b')
-    risk_data = df.groupby('Month')['Spend'].count().reindex(
-        ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    ).fillna(0).reset_index()
-else:
-    risk_data = pd.DataFrame({
-        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        "Spend_Count": [5, 8, 6, 7, 10, 12]
-    })
-
-fig_risk = go.Figure(data=[go.Bar(
-    x=risk_data["Month"], 
-    y=risk_data[risk_data.columns[1]], 
-    marker_color='#228be6'
-)])
-fig_risk.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
-st.plotly_chart(fig_risk, use_container_width=True)
-
-with col2:
-    st.markdown("##### 🌍 Supplier Spend by Region")
-    region_map = {
-        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
-        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
-        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
-    }
-    if uploaded_file:
-
-      # df is defined here
-      df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
-
-    # --- Region Mapping ---
-    region_map = {
-        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
-        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
-        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
-    }
+# ------- START DASHBOARD SECTION -------
 if uploaded_file:
-
-    # df is defined here
     df = pd.read_csv(uploaded_file) if uploaded_file.name.endswith('.csv') else pd.read_excel(uploaded_file)
 
-    # --- Region Mapping ---
-    region_map = {
-        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
-        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
-        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
-    }
+    # --- Clean & Compute ---
+    total_spend = df['Spend'].sum()
+    top_supplier_pct = df.groupby('Supplier')['Spend'].sum().max() / total_spend * 100
+    num_countries = df['Country'].nunique()
 
-    df["Region"] = df["Country"].map(region_map).fillna("Other")
+    def compute_volatility(row):
+        try:
+            prices = list(map(float, str(row['Historical_Costs']).split(';')))
+            return np.std(prices)
+        except:
+            return np.nan
 
-    region_breakdown = df.groupby("Region")["Spend"].sum()
-    df["Region"] = df["Country"].map(region_map).fillna("Other")
+    df['Volatility'] = df.apply(compute_volatility, axis=1)
+    avg_volatility = df['Volatility'].mean()
 
-    region_breakdown = df.groupby("Region")["Spend"].sum()
+    resilience_score = max(0, 100 - top_supplier_pct - (avg_volatility * 10))
+    supply_risk = "High" if top_supplier_pct > 50 or avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
+    volatility_level = "High" if avg_volatility > 0.5 else "Moderate" if avg_volatility > 0.3 else "Low"
+    risk_color = "#e74c3c" if supply_risk == "High" else "#e67e22" if supply_risk == "Moderate" else "#43a047"
 
+    col1, col2, col3 = st.columns([1.1, 1, 1])
+    with col1:
+        st.markdown("#### Resilience Score")
+        fig = go.Figure(go.Indicator(
+            mode="gauge+number",
+            value=resilience_score,
+            gauge={
+                "axis": {"range": [0, 100]},
+                "bar": {"color": "#238823"},
+                "steps": [
+                    {"range": [0, 50], "color": "#e74c3c"},
+                    {"range": [50, 75], "color": "#f6c542"},
+                    {"range": [75, 100], "color": "#43a047"},
+                ],
+            },
+        ))
+        fig.update_layout(height=220, margin=dict(l=0, r=0, t=30, b=0))
+        st.plotly_chart(fig, use_container_width=True)
 
-with col3:
-    st.markdown("##### 🛡️ Mitigation Plan")
+    with col2:
+        st.markdown("#### Key Metrics")
+        c1, c2 = st.columns(2)
+        c1.markdown(f"<div style='background:#f6c542; padding:1rem; border-radius:10px; color:#222; text-align:center;'>Supplier Concentration<br><span style='font-size:1.6em;font-weight:bold;'>{top_supplier_pct:.1f}%</span></div>", unsafe_allow_html=True)
+        c2.markdown(f"<div style='background:#228be6; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Geographic Exposure<br><span style='font-size:1.6em;font-weight:bold;'>{num_countries} Countries</span></div>", unsafe_allow_html=True)
+        c1.markdown(f"<div style='background:#e74c3c; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Cost Volatility<br><span style='font-size:1.2em;font-weight:bold;'>{volatility_level}</span></div>", unsafe_allow_html=True)
+        c2.markdown(f"<div style='background:{risk_color}; padding:1rem; border-radius:10px; color:#fff; text-align:center;'>Supply Risk<br><span style='font-size:1.2em;font-weight:bold;'>{supply_risk}</span></div>", unsafe_allow_html=True)
 
-# Example AI logic
-objective = "Reduce supplier risk from high volatility" if avg_volatility > 0.5 else "Diversify spend across more regions"
-timeline = "6 – 12 months" if supply_risk == "High" else "3 – 6 months"
-owner = "Supply Chain Director" if top_supplier_pct > 50 else "Procurement Lead"
-kpi = "Lower top supplier share, improved regional mix"
+    with col3:
+        st.markdown("#### Recommendations")
+        st.markdown("""
+        <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia</div>
+        <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
+        <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
+        """, unsafe_allow_html=True)
 
-mitigation_html = f"""
-<div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
-    <p><strong> Objective:</strong> {objective}</p>
-    <p><strong> Timeline:</strong> {timeline}</p>
-    <p><strong> Owner:</strong> {owner}</p>
-    <p><strong> KPIs:</strong> {kpi}</p>
-</div>
-"""
-st.markdown(mitigation_html, unsafe_allow_html=True)
+    # --------- Risk Insights, Supplier Diversification, Mitigation Plan ----------
+    st.markdown("### 📊 Risk Insights | 🌍 Supplier Diversification | 🛡️ Mitigation Plan")
+    col1, col2, col3 = st.columns([1, 1, 1])
 
-# ---- Upload Section Heading ----
-st.markdown("### 📂 Upload Your Data")
-st.markdown("""
-Upload your **.csv** or **.xlsx** file and review your resilience profile instantly.
+    # --- 📊 Risk Insights ---
+    with col1:
+        st.markdown("##### 📊 Risk Insights")
+        try:
+            if 'Date' in df.columns:
+                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                df['Month'] = df['Date'].dt.strftime('%b')
+                alerts_per_month = df['Month'].value_counts().reindex(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], fill_value=0)
+            else:
+                df['Alert'] = (df['Volatility'] > 0.5) | (df['Spend'] > (0.5 * df['Spend'].max()))
+                alerts_per_month = df['Alert'].value_counts().rename(index={True: 'Alerts', False: 'No Alerts'})
 
-[Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/raw/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
+            fig_risk = go.Figure(data=[go.Bar(
+                x=alerts_per_month.index, 
+                y=alerts_per_month.values,
+                marker_color='#228be6'
+            )])
+            fig_risk.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
+            st.plotly_chart(fig_risk, use_container_width=True)
+        except Exception as e:
+            st.warning("Unable to generate dynamic chart. Please check your data format.")
 
-uploaded_file = st.file_uploader(
-    "Choose a .csv or .xlsx file",
-    type=['csv', 'xlsx'],
-    key="secondary_upload"  #  Different key
-)
-if uploaded_file is None:
-    st.info(" Upload a file to unlock dashboard analytics.")
-    st.stop()
+    # --- 🌍 Supplier Spend by Region ---
+    with col2:
+        st.markdown("##### 🌍 Supplier Spend by Region")
+        region_map = {
+            "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
+            "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
+            "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
+        }
+        df["Region"] = df["Country"].map(region_map).fillna("Other")
+        region_breakdown = df.groupby("Region")["Spend"].sum()
+        fig_donut = go.Figure(data=[go.Pie(
+            labels=region_breakdown.index,
+            values=region_breakdown.values,
+            hole=0.5,
+            textinfo='label+percent'
+        )])
+        fig_donut.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
+        st.plotly_chart(fig_donut, use_container_width=True)
 
-# ---- Collapsible Raw Data Table ----
-with st.expander(" View Raw Supplier Data Table"):
-    st.dataframe(df)
-    st.download_button("📥 Download Full Data", data=df.to_csv(index=False), file_name="resililytics_output.csv", mime="text/csv")
+    # --- 🛡️ Mitigation Plan (AI-Like Logic) ---
+    with col3:
+        st.markdown("##### 🛡️ Mitigation Plan")
+        if resilience_score < 60:
+            objective = "Strengthen supply diversification"
+            timeline = "6 – 12 months"
+            owner = "Supply Chain Director"
+            kpis = "Supplier diversity index, lead time, delivery performance"
+        elif top_supplier_pct > 50:
+            objective = "Reduce single-source dependency"
+            timeline = "3 – 6 months"
+            owner = "Procurement Lead"
+            kpis = "Top supplier share, sourcing options"
+        else:
+            objective = "Maintain current risk level"
+            timeline = "Quarterly reviews"
+            owner = "Operations Manager"
+            kpis = "On-time delivery, volatility control"
+
+        st.markdown(f"""
+        <div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
+            <p><strong>🎯 Objective:</strong> {objective}</p>
+            <p><strong>📅 Timeline:</strong> {timeline}</p>
+            <p><strong>👤 Owner:</strong> {owner}</p>
+            <p><strong>📊 KPIs:</strong> {kpis}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 # --------------- TAB 2: About ---------------
 with tab2:
