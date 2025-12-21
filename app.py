@@ -252,9 +252,8 @@ with tab2:
     st.markdown("---")
     st.markdown("Still have questions? 👉 [**Contact Us Here**](https://resililytics-app.streamlit.app/#contact)")
 
-# --------------- TAB 2: About ---------------
-with tab2:
   # ---------------------- HELP & FAQ SECTION ----------------------
+with tab2:
 st.markdown("## ❓ Help & FAQ")
 
 with st.expander("📂 What file types can I upload?"):
