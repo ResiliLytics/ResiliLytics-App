@@ -140,9 +140,9 @@ with tab1:
         with col3:
             st.markdown("#### Recommendations")
             st.markdown("""
-            <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>✅ Evaluate alternate suppliers in East Asia</div>
-            <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'>📦 Increase buffer inventory for key items</div>
-            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
+            <div style='background:#43a047; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'> Evaluate alternate suppliers in East Asia</div>
+            <div style='background:#f6c542; color:#111; border-radius:10px; padding:1rem; margin-bottom:8px;'> Increase buffer inventory for key items</div>
+            <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'> Download Project Brief: Supplier Diversification</div>
             """, unsafe_allow_html=True)
 
         # ---- Second Row: Risk Insights, Supplier Diversification, Mitigation Plan ----
