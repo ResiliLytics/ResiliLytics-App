@@ -82,7 +82,7 @@ with tab1:
     st.markdown("""
     Upload your **.csv** or **.xlsx** file and review your resilience profile instantly.
 
-    [📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/raw/main/sample%20supplier%20template.xlsx)
+    [📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/raw/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
 
     uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
@@ -233,8 +233,7 @@ st.markdown("### 📂 Upload Your Data")
 st.markdown("""
 Upload your **.csv** or **.xlsx** file and review your resilience profile instantly.
 
-[📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/blob/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
-""", unsafe_allow_html=True)
+[📥 Download Sample Template](https://github.com/ResiliLytics/ResiliLytics-App/raw/41880325b28d159778df68a25b3d6ade9fc2aa61/sample%20supplier%20template.xlsx.csv)
 
 uploaded_file = st.file_uploader(
     "Choose a .csv or .xlsx file",
