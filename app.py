@@ -211,14 +211,22 @@ if uploaded_file:
 
 with col3:
     st.markdown("##### 🛡️ Mitigation Plan")
-    st.markdown("""
-    <div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
-        <p><strong>🎯 Objective:</strong> Reduce single-source dependency</p>
-        <p><strong>📅 Timeline:</strong> 3 – 8 months</p>
-        <p><strong>👤 Owner:</strong> Supply Chain Manager</p>
-        <p><strong>📊 KPIs:</strong> Supplier mix, lead time, risk reduction</p>
-    </div>
-    """, unsafe_allow_html=True)
+
+# Example AI logic
+objective = "Reduce supplier risk from high volatility" if avg_volatility > 0.5 else "Diversify spend across more regions"
+timeline = "6 – 12 months" if supply_risk == "High" else "3 – 6 months"
+owner = "Supply Chain Director" if top_supplier_pct > 50 else "Procurement Lead"
+kpi = "Lower top supplier share, improved regional mix"
+
+mitigation_html = f"""
+<div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
+    <p><strong>🎯 Objective:</strong> {objective}</p>
+    <p><strong>📅 Timeline:</strong> {timeline}</p>
+    <p><strong>👤 Owner:</strong> {owner}</p>
+    <p><strong>📊 KPIs:</strong> {kpi}</p>
+</div>
+"""
+st.markdown(mitigation_html, unsafe_allow_html=True)
 
 # ---- Upload Section Heading ----
 st.markdown("### 📂 Upload Your Data")
