@@ -137,63 +137,8 @@ with tab1:
             <div style='background:#228be6; color:#fff; border-radius:10px; padding:1rem; margin-bottom:8px;'>📄 Download Project Brief: Supplier Diversification</div>
             """, unsafe_allow_html=True)
 
-        # ---- Second Row: Risk Insights, Supplier Diversification, Mitigation Plan ----
-st.markdown("### 📊 Risk Insights | 🌍 Supplier Diversification | 🛡️ Mitigation Plan")
-
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col1:
-    st.markdown("##### 📊 Monthly Risk Alerts (Demo)")
-    risk_data = pd.DataFrame({
-        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        "Alerts": [4, 6, 8, 11, 13, 14]
-    })
-    fig_risk = go.Figure(data=[go.Bar(
-        x=risk_data["Month"], 
-        y=risk_data["Alerts"], 
-        marker_color='#228be6'
-    )])
-    fig_risk.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
-    st.plotly_chart(fig_risk, use_container_width=True)
-
-with col2:
-    st.markdown("##### 🌍 Supplier Spend by Region")
-    region_map = {
-        "China": "Asia", "Japan": "Asia", "India": "Asia", "Vietnam": "Asia",
-        "USA": "Americas", "Canada": "Americas", "Mexico": "Americas",
-        "Germany": "Europe", "France": "Europe", "UK": "Europe", "Italy": "Europe"
-    }
-    df["Region"] = df["Country"].map(region_map).fillna("Other")
-    region_breakdown = df.groupby("Region")["Spend"].sum()
-    fig_donut = go.Figure(data=[go.Pie(
-        labels=region_breakdown.index,
-        values=region_breakdown.values,
-        hole=0.5,
-        textinfo='label+percent'
-    )])
-    fig_donut.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
-    st.plotly_chart(fig_donut, use_container_width=True)
-
-with col3:
-    st.markdown("##### 🛡️ Mitigation Plan")
-    st.markdown("""
-    <div style="background-color:#f8f9fa; padding:1.5rem; border-radius:12px; color:#000; border:1px solid #ccc;">
-        <p><strong>🎯 Objective:</strong> Reduce single-source dependency</p>
-        <p><strong>📅 Timeline:</strong> 3 – 8 months</p>
-        <p><strong>👤 Owner:</strong> Supply Chain Manager</p>
-        <p><strong>📊 KPIs:</strong> Supplier mix, lead time, risk reduction</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---- Upload Section Heading ----
-st.markdown("### 📁 Upload Your Data")
-st.markdown("Upload your .csv or .xlsx file and review your resilience profile instantly.")
-
-# ---- Collapsible Raw Data Table ----
-with st.expander("📊 View Raw Supplier Data Table"):
-    st.dataframe(df)
-    st.download_button("📥 Download Full Data", data=df.to_csv(index=False), file_name="resililytics_output.csv", mime="text/csv")
-
+        st.markdown("---")
+        st.dataframe(df.head())
 
 # --------------- TAB 2: About ---------------
 with tab2:
@@ -263,74 +208,7 @@ with tab2:
     st.markdown("---")
     st.markdown("Still have questions? 👉 [**Contact Us Here**](https://resililytics-app.streamlit.app/#contact)")
 
-# --------------- TAB 2: About ---------------
-with tab2:
-    st.markdown("## 📖 Help & FAQ")
-
-    st.markdown("### 🛠️ How It Works")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div style="background:#228be6; padding:1rem; border-radius:10px; color:white;">
-            <h4>📤 Upload Your File</h4>
-            Upload your CSV or Excel file with basic supplier data.
-        </div>
-        """, unsafe_allow_html=True)
-    with col2:
-        st.markdown("""
-        <div style="background:#20c997; padding:1rem; border-radius:10px; color:white;">
-            <h4>📈 Analyze</h4>
-            Instantly see resilience scores, risks, and exposure metrics.
-        </div>
-        """, unsafe_allow_html=True)
-
-    col3, col4 = st.columns(2)
-    with col3:
-        st.markdown("""
-        <div style="background:#f76707; padding:1rem; border-radius:10px; color:white;">
-            <h4>💡 Get Recommendations</h4>
-            View mitigation suggestions tailored to your results.
-        </div>
-        """, unsafe_allow_html=True)
-    with col4:
-        st.markdown("""
-        <div style="background:#ae3ec9; padding:1rem; border-radius:10px; color:white;">
-            <h4>📄 Export or Explore</h4>
-            Download your report or try alternate data for comparison.
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown("### 📺 Learn More")
-
-    with st.expander("▶️ Watch Quick Tutorial Video"):
-        st.video("https://www.youtube.com/embed/YOUR_VIDEO_ID")  # Replace with real ID
-
-    with st.expander("📄 Download or View User Manual"):
-        st.markdown("""
-        - 📥 [Download the Guide (PDF)](https://yourwebsite.com/resililytics-guide.pdf)
-        - 📘 [Open the Online Manual](https://yourwebsite.com/help-doc)
-        """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown("### ❓ Frequently Asked Questions")
-
-    with st.expander("What data do I need to use the app?"):
-        st.write("A simple file (CSV or Excel) with supplier names, spend, country, and historical cost values. You can download a template from the homepage.")
-
-    with st.expander("Is my data private?"):
-        st.write("Yes. This tool runs entirely in your browser session. Your data is not stored or shared.")
-
-    with st.expander("What happens after I upload my file?"):
-        st.write("The system calculates your resilience score, evaluates risk, and gives actionable mitigation suggestions — all instantly.")
-
-    with st.expander("How are resilience metrics calculated?"):
-        st.write("Visit the README on GitHub or scroll to the bottom of the app for a full breakdown of formulas and logic.")
-
-    st.markdown("---")
-    st.markdown("Still have questions? 👉 [**Contact Us Here**](https://resililytics-app.streamlit.app/#contact)")
-
+  
 # --------------- TAB 3: Contact ---------------
 with tab3:
     st.markdown("## Contact Us")
@@ -346,8 +224,7 @@ with tab3:
     st.markdown(contact_form, unsafe_allow_html=True)
 
 # ---- LEGAL & NON-COMMERCIAL USE DISCLAIMER ----
-st.markdown(
-"""
+st.markdown("""
 <hr style='margin-top: 3rem; margin-bottom: 1rem;'>
 
 <div style='background-color: #121212; padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid #333;'>
@@ -356,9 +233,8 @@ st.markdown(
 
 <p style='color: #ddd; font-size: 0.95rem; line-height: 1.6;'>
 <strong>Disclaimer:</strong> This application is a non-commercial, research-focused prototype developed solely for academic and public-benefit purposes. It is intended to demonstrate a novel approach to SME supply chain resilience using AI and analytics.
-</p>
 
-<p style='color: #ddd; font-size: 0.95rem; line-height: 1.6;'>
+The developer is not engaged in any commercial activity.
 No services are sold or monetized through this platform.
 All uploaded data is used for live computation only and is not stored or retained.
 This tool is part of a public contribution portfolio used in support of a research project.
@@ -366,11 +242,9 @@ All content is provided “as is” without warranty of any kind.
 </p>
 
 <p style='color: #ddd; font-size: 0.95rem; line-height: 1.6;'>
-This application <strong>does not offer paid services</strong> and <strong>is not affiliated with any business entity</strong>.
+This application <strong>does not offer paid services</strong> and <strong>is not affiliated with any business entity</strong>. The developer is not engaged in commercial activity.
+Data uploaded is processed temporarily and not stored.
 </p>
 
 </div>
-""",
-unsafe_allow_html=True
-)
-
+""", unsafe_allow_html=True)
